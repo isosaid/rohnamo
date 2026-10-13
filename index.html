@@ -1,0 +1,1804 @@
+<!doctype html>
+<html lang="tg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Роҳнамо</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,800;1,7..72,500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: sticky top bar over a 1180px column; hero = extruded wordmark + live 3D portal; course player = step sidebar + reading column; documents are always paper */
+:root{
+  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8edf0; --ink:#14203a; --muted:#566278; --line:#d5dde3;
+  --lapis:#25418f; --lapis-ink:#ffffff; --lapis-soft:#dfe6f6;
+  --pom:#b3213a; --pom-ink:#ffffff; --pom-soft:#f7e0e4;
+  --saffron:#cf8f12; --emerald:#13795b; --emerald-soft:#d9efe6;
+  --w-top:#5a86f0; --w-mid:#26449a; --w-bot:#152a6c; --w-ext:#e4ac3e; --w-ext2:#a5700e;
+  --halo:rgba(233,168,58,.28);
+  --paper:#fbfaf6; --paper-ink:#1d2236; --paper-muted:#666b7c;
+  --f-display:'Literata', Georgia, 'Times New Roman', serif;
+  --f-body:'Golos Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --shadow:0 1px 2px rgba(20,32,58,.06),0 10px 28px rgba(20,32,58,.08);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1221; --surface:#121b2f; --surface-2:#1a2541; --ink:#e6ebf4; --muted:#9ba7bd; --line:#253150;
+  --lapis:#86a2f2; --lapis-ink:#0b1221; --lapis-soft:#1c2a4f;
+  --pom:#f0778b; --pom-ink:#1d0a10; --pom-soft:#3b1a24;
+  --saffron:#efbd52; --emerald:#52c79f; --emerald-soft:#123428;
+  --w-top:#d6e1ff; --w-mid:#94aef6; --w-bot:#5b7bd9; --w-ext:#e4ac3e; --w-ext2:#875a0a;
+  --halo:rgba(233,168,58,.18);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1221; --surface:#121b2f; --surface-2:#1a2541; --ink:#e6ebf4; --muted:#9ba7bd; --line:#253150;
+  --lapis:#86a2f2; --lapis-ink:#0b1221; --lapis-soft:#1c2a4f;
+  --pom:#f0778b; --pom-ink:#1d0a10; --pom-soft:#3b1a24;
+  --saffron:#efbd52; --emerald:#52c79f; --emerald-soft:#123428;
+  --w-top:#d6e1ff; --w-mid:#94aef6; --w-bot:#5b7bd9; --w-ext:#e4ac3e; --w-ext2:#875a0a;
+  --halo:rgba(233,168,58,.18);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body)}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--lapis)}
+:focus-visible{outline:2px solid var(--lapis);outline-offset:2px;border-radius:6px}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.w100{width:100%}
+
+/* 3D wordmark */
+.w3d{font-family:var(--f-display);font-weight:800;background:linear-gradient(180deg,var(--w-top) 0%,var(--w-mid) 52%,var(--w-bot) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 var(--w-ext)) drop-shadow(0 1px 0 var(--w-ext2)) drop-shadow(0 3px 4px rgba(10,20,50,.22))}
+.w3d.big{filter:drop-shadow(0 2px 0 var(--w-ext)) drop-shadow(0 2px 0 var(--w-ext)) drop-shadow(0 2px 0 var(--w-ext2)) drop-shadow(0 2px 0 var(--w-ext2)) drop-shadow(0 2px 0 var(--w-ext2)) drop-shadow(0 18px 22px rgba(10,20,50,.28))}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:68px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0}
+.logo .mk{width:40px;height:40px;transition:transform .35s cubic-bezier(.3,1.6,.5,1);filter:drop-shadow(0 4px 6px rgba(10,20,50,.25))}
+.logo:hover .mk{transform:rotate(-7deg) scale(1.08)}
+.logo .w3d{font-size:24px;line-height:1;padding-bottom:3px}
+.nav{display:flex;gap:2px;flex:1;min-width:0}
+.nav button{background:none;border:0;padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:500;white-space:nowrap}
+.nav button:hover,.nav button[aria-current="page"]{color:var(--ink);background:var(--surface-2)}
+.auth{display:flex;gap:8px;align-items:center}
+.lang{display:flex;border:1px solid var(--line);border-radius:9px;padding:2px;background:var(--surface)}
+.lang button{border:0;background:none;padding:4px 9px;border-radius:7px;font-size:13px;font-weight:700;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.me{display:flex;align-items:center;gap:10px;background:none;border:1px solid var(--line);border-radius:999px;padding:4px 14px 4px 4px;font-weight:600;font-size:14px}
+.ava{width:30px;height:30px;border-radius:50%;background:var(--lapis);color:var(--lapis-ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+@media (max-width:860px){.nav{order:3;flex-basis:100%;overflow-x:auto;padding-bottom:8px}.auth{margin-left:auto}.top .wrap{gap:8px 12px;padding-top:8px}}
+@media (max-width:440px){.me span:last-child{display:none}.me{padding:4px}.auth .btn-ghost{display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:11px 18px;font-weight:600;border:1px solid transparent;line-height:1.2;transition:filter .15s,background .15s,transform .15s;text-align:center}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--lapis);color:var(--lapis-ink)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-accent{background:var(--pom);color:var(--pom-ink)}
+.btn-accent:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{background:var(--surface-2)}
+.btn-sm{padding:7px 13px;font-size:14px}
+.btn-lg{padding:14px 22px;font-size:17px}
+
+/* hero */
+.hero{padding-block:40px 36px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center}
+.hero h1{font-size:clamp(56px,9.4vw,112px);letter-spacing:-.01em;margin-top:14px;line-height:1.05;padding-bottom:14px;display:inline-block}
+.hero .tr{font-size:15px;color:var(--muted);margin-top:4px;max-width:46ch}
+.hero .tr b{font-family:var(--f-display);font-style:italic;font-weight:500;color:var(--pom);font-size:17px}
+.lead{font-size:18px;color:var(--muted);max-width:56ch;margin:20px 0 28px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:36px}
+.stat b{display:block;font-family:var(--f-display);font-size:30px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:13px;color:var(--muted)}
+.hero3d{position:relative;aspect-ratio:1/1;width:100%;max-width:560px;justify-self:center}
+.hero3d::before{content:"";position:absolute;inset:8% 6% 14%;border-radius:50%;background:radial-gradient(closest-side,var(--halo),transparent 75%)}
+.hero3d .fallback{position:absolute;inset:14%;width:72%;height:72%;filter:drop-shadow(0 24px 30px rgba(10,20,50,.3));transition:opacity .6s}
+.hero3d canvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity .8s}
+.hero3d.live canvas{opacity:1}
+.hero3d.live .fallback{opacity:0}
+.hero3d .cap{position:absolute;left:50%;bottom:1%;transform:translateX(-50%);font-family:var(--f-display);font-style:italic;font-size:clamp(15px,1.7vw,19px);color:var(--ink);white-space:nowrap;display:flex;align-items:baseline;gap:10px}
+.hero3d .cap small{font-family:var(--f-body);font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron);font-weight:700}
+.hero3d .cap small::before{content:"— "}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:12px}.hero3d{max-width:420px;order:-1}}
+
+.ikat{height:16px;background:repeating-linear-gradient(90deg,var(--lapis) 0 26px,var(--saffron) 26px 34px,var(--pom) 34px 52px,var(--emerald) 52px 60px,var(--surface) 60px 66px,var(--pom) 66px 72px);filter:blur(.8px);opacity:.9}
+
+/* sections */
+.sec{padding-block:56px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.sec-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 24px;margin-bottom:26px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(26px,3.4vw,38px);font-weight:600;margin-top:6px}
+.sec-h p{color:var(--muted);max-width:56ch;margin-top:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink)}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* course cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.cover{aspect-ratio:16/8;position:relative;background:var(--pat),hsl(var(--h) 48% 32%);display:flex;align-items:flex-end;justify-content:space-between;padding:16px;color:#fff;width:100%}
+.glyph{font-family:var(--f-mono);font-weight:600;font-size:34px;line-height:1}
+.kind{position:absolute;top:12px;left:12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:4px 8px;border-radius:6px;font-weight:600}
+.lvl{font-size:12px;opacity:.85}
+.card-b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1;width:100%}
+.card-b h3{font-family:var(--f-body);font-size:17px;font-weight:600;line-height:1.3}
+.card-b p{color:var(--muted);font-size:14px;line-height:1.5}
+.meta{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:auto;padding-top:6px}
+.bar{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--emerald);border-radius:inherit}
+.prow{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.prow .bar{flex:1}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--emerald-soft);color:var(--emerald);align-self:flex-start}
+
+/* how it works */
+.steps4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.st4{padding:22px 0 0;border-top:2px solid var(--ink)}
+.st4 b{font-family:var(--f-display);font-size:15px;color:var(--pom);font-weight:600}
+.st4 h3{font-family:var(--f-body);font-size:18px;font-weight:600;margin:8px 0 6px}
+.st4 p{color:var(--muted);font-size:15px}
+@media (max-width:860px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.steps4{grid-template-columns:1fr}}
+
+/* documents section */
+.docs3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.docs3 h3{font-family:var(--f-body);font-size:19px;font-weight:600;margin:18px 0 6px}
+.docs3 p{color:var(--muted);font-size:15px}
+@media (max-width:860px){.docs3{grid-template-columns:1fr;max-width:520px}}
+
+/* tracks */
+.tracks{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.track{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.track h3{font-size:24px;font-weight:600}
+.track p{color:var(--muted);font-size:15px}
+.tk-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.tk-list li{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:9px 0;font-size:14px}
+.tk-list button{background:none;border:0;padding:0;text-align:left;flex:1;font-weight:500;min-width:0}
+.tk-list button:hover{color:var(--lapis)}
+.tk-list .n{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:11px;flex:none;color:var(--muted);font-weight:600}
+.tk-list li.done .n{background:var(--emerald);border-color:var(--emerald);color:var(--surface)}
+.tk-list .h{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tk-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--muted)}
+.tk-foot strong{color:var(--pom);font-weight:600}
+
+/* page headers */
+.ph{font-size:clamp(32px,5vw,52px);font-weight:600;margin-top:8px}
+.pagehead{padding-block:44px 24px}
+.filters{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.search{display:flex;gap:10px;max-width:560px}
+.inp{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:11px 14px;font:inherit}
+.inp:focus{outline:2px solid var(--lapis);outline-offset:0;border-color:transparent}
+.frow{display:flex;gap:10px 20px;flex-wrap:wrap;align-items:center}
+.frow .lbl{font-size:13px;color:var(--muted);font-weight:600;min-width:84px}
+.empty{padding:48px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+
+/* course page */
+.c-hero{background:var(--pat),hsl(var(--h) 44% 22%);color:#fff;padding-block:44px 40px}
+.c-hero .back{background:none;border:0;color:rgba(255,255,255,.8);padding:0;font-size:14px;margin-bottom:18px}
+.c-hero .back:hover{color:#fff}
+.c-hero h1{font-size:clamp(30px,4.6vw,50px);font-weight:600;max-width:22ch}
+.c-hero p{max-width:62ch;color:rgba(255,255,255,.85);margin-top:14px;font-size:17px}
+.c-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.c-tags span{background:rgba(255,255,255,.14);padding:5px 11px;border-radius:999px;font-size:13px;font-weight:500}
+.c-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;padding-block:32px 56px;align-items:start}
+@media (max-width:900px){.c-layout{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.c-main{display:flex;flex-direction:column;gap:24px;min-width:0}
+.c-main h2{font-size:24px;font-weight:600;margin-bottom:14px}
+.skills{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px}
+.skills li{display:flex;gap:10px;font-size:15px}
+.skills li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--emerald-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.5 2.5L13 6.5' fill='none' stroke='%2313795b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+.mod{border-top:1px solid var(--line);padding-block:16px}
+.mod:first-of-type{border-top:0;padding-top:0}
+.mod h3{font-family:var(--f-body);font-size:16px;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.mod h3 small{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.mod ul{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:6px}
+.mod li{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:3px;border:1.5px solid var(--muted);flex:none}
+.dot.quiz{border-radius:50%}
+.dot.exam{border-radius:2px;transform:rotate(45deg);border-color:var(--pom)}
+.dot.done{background:var(--emerald);border-color:var(--emerald)}
+.side{position:sticky;top:84px;display:flex;flex-direction:column;gap:16px}
+@media (max-width:900px){.side{position:static}}
+.side .btn{width:100%}
+.facts{list-style:none;padding:0;margin:0;font-size:14px}
+.facts li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.facts li:last-child{border-bottom:0}
+.facts span{color:var(--muted)}
+.facts b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+
+/* player */
+.learn{display:grid;grid-template-columns:300px minmax(0,1fr);align-items:start}
+.ls{border-right:1px solid var(--line);background:var(--surface);position:sticky;top:69px;max-height:calc(100vh - 69px);overflow:auto;padding:18px 14px 28px}
+.ls summary{list-style:none;cursor:pointer;font-weight:600;font-size:14px;display:flex;justify-content:space-between;padding:4px 6px 12px}
+.ls summary::-webkit-details-marker{display:none}
+.lsm{margin-bottom:16px}
+.lsm-t{font-size:14px;font-weight:600;padding:0 6px 6px;line-height:1.35}
+.lsm-t span{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.lsm ul{list-style:none;padding:0;margin:0}
+.lsm li button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;padding:7px 8px;border-radius:8px;font-size:14px;color:var(--muted);line-height:1.35}
+.lsm li button:hover{background:var(--surface-2);color:var(--ink)}
+.lsm li button.on{background:var(--lapis-soft);color:var(--ink);font-weight:600}
+@media (max-width:860px){.learn{grid-template-columns:1fr}.ls{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}}
+.lm{padding:24px clamp(16px,4vw,56px) 72px;max-width:900px;min-width:0}
+.lt{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin-bottom:18px}
+.lt .back{background:none;border:0;padding:0;color:var(--muted);font-size:14px;font-weight:500;text-align:left}
+.lt .back:hover{color:var(--ink)}
+.lt .prow{min-width:180px}
+.squares{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.sq{width:32px;height:32px;border-radius:7px;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;font-size:12px;color:var(--muted);font-weight:600;padding:0;font-variant-numeric:tabular-nums}
+.sq.quiz{border-radius:50%}
+.sq.exam{color:var(--pom);border-color:var(--pom)}
+.sq.done{background:var(--emerald);border-color:var(--emerald);color:var(--surface)}
+.sq.cur{outline:2px solid var(--lapis);outline-offset:2px}
+.stype{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lesson h2{font-size:clamp(26px,3.4vw,34px);font-weight:600;margin:6px 0 20px}
+.langnote{font-size:13px;color:var(--muted);background:var(--surface-2);border-radius:8px;padding:6px 10px;display:inline-block;margin-bottom:16px}
+.prose{display:flex;flex-direction:column;gap:14px;font-size:17px;line-height:1.7}
+.prose>*{max-width:70ch}
+.prose ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.prose pre{background:var(--surface-2);border-radius:10px;padding:16px 18px;overflow-x:auto;font:14px/1.65 var(--f-mono);margin:0;max-width:100%}
+.prose code,.qt code,.opt code{font-family:var(--f-mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+.prose pre code{background:none;padding:0;font-size:inherit}
+kbd{font-family:var(--f-mono);font-size:.82em;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:var(--surface)}
+.note{border-left:3px solid var(--saffron);background:color-mix(in srgb,var(--saffron) 12%,var(--surface));padding:12px 16px;border-radius:0 10px 10px 0}
+.vocab{border-collapse:collapse;width:100%;max-width:480px;font-size:16px}
+.vocab td{padding:8px 12px;border-bottom:1px solid var(--line)}
+.vocab td:first-child{font-weight:600;font-family:var(--f-display);font-size:18px}
+.vocab td:last-child{color:var(--muted)}
+.q{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;background:var(--surface)}
+.q.ok{border-color:var(--emerald);box-shadow:inset 3px 0 0 var(--emerald)}
+.q.bad{border-color:var(--pom);box-shadow:inset 3px 0 0 var(--pom)}
+.qn{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.qt{font-size:17px;font-weight:500;margin:6px 0 12px}
+.opts{display:flex;flex-direction:column;gap:2px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:8px;cursor:pointer;font-size:16px}
+.opt:hover{background:var(--surface-2)}
+.opt input{margin-top:5px;accent-color:var(--lapis);flex:none}
+.fb{font-size:14px;margin-top:10px;font-weight:600}
+.fb.ok{color:var(--emerald)}
+.fb.bad{color:var(--pom)}
+.qbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.result{border-radius:14px;padding:22px;margin-bottom:22px;display:flex;flex-direction:column;gap:10px}
+.result.ok{background:var(--emerald-soft)}
+.result.bad{background:var(--pom-soft)}
+.result h3{font-family:var(--f-body);font-size:20px;font-weight:600}
+.result .big{font-family:var(--f-display);font-size:44px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.result.ok .big{color:var(--emerald)}
+.result.bad .big{color:var(--pom)}
+.result .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.lock{border:1px dashed var(--line);border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.navrow{display:flex;justify-content:space-between;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+
+/* cabinet */
+.cab-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.tile b{display:block;font-family:var(--f-display);font-size:34px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--muted)}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cab-sec{margin-top:44px}
+.cab-sec>h2{font-size:26px;font-weight:600;margin-bottom:18px}
+.rows{display:flex;flex-direction:column;gap:10px}
+.crow{display:grid;grid-template-columns:52px minmax(0,1fr) 200px auto;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.crow .ic{width:52px;height:52px;border-radius:10px;background:var(--pat),hsl(var(--h) 48% 32%);color:#fff;display:grid;place-items:center;font-family:var(--f-mono);font-weight:600;font-size:16px}
+.crow h3{font-family:var(--f-body);font-size:16px;font-weight:600}
+.crow small{color:var(--muted);font-size:13px}
+@media (max-width:700px){.crow{grid-template-columns:44px minmax(0,1fr)}.crow .ic{width:44px;height:44px}.crow .prow,.crow .btn{grid-column:1/-1}}
+.docgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.dcard{background:none;border:0;padding:0;text-align:left;display:flex;flex-direction:column;gap:10px}
+.dcard .docbox{transition:transform .2s}
+.dcard:hover .docbox{transform:translateY(-3px)}
+.dcard b{font-size:15px;font-weight:600}
+.dcard small{color:var(--muted);font-size:13px;font-family:var(--f-mono)}
+.acc{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.acc .field{flex:1;min-width:220px;margin:0}
+
+/* doc page */
+.docpage{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;padding-block:28px 64px;align-items:start}
+@media (max-width:960px){.docpage{grid-template-columns:1fr}}
+
+/* verify */
+.narrow{max-width:760px}
+.vrow{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.vrow .inp{flex:1;min-width:220px;font-family:var(--f-mono)}
+.vres{margin-top:24px}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(6,10,22,.6);display:grid;place-items:center;padding:20px 16px;overflow:auto}
+.dialog{background:var(--surface);border-radius:18px;width:min(440px,100%);padding:30px 28px 24px;box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative}
+.dialog.wide{width:min(760px,100%)}
+.dialog h2{font-size:26px;font-weight:600;margin:12px 0 18px}
+.dlg-logo .mk{width:52px;height:52px;filter:drop-shadow(0 6px 8px rgba(10,20,50,.25))}
+.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--surface-2);font-size:20px;line-height:1;color:var(--muted)}
+.tabs{display:flex;background:var(--surface-2);border-radius:10px;padding:4px;margin-bottom:20px}
+.tabs button{flex:1;border:0;background:none;padding:8px;border-radius:8px;font-weight:600;color:var(--muted);font-size:15px}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:13px;font-weight:600}
+.hint{font-size:12.5px;color:var(--muted);line-height:1.45}
+.hint.c{text-align:center;margin-top:10px}
+.err{color:var(--pom);font-size:14px;min-height:20px;margin-bottom:8px;font-weight:500}
+.or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;margin:16px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.celebrate{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:8px 0 20px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:10px;font-weight:500;z-index:80;box-shadow:var(--shadow);max-width:calc(100% - 32px)}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding-block:28px 36px}
+.foot .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.foot .brandline{display:flex;align-items:center;gap:10px}
+.foot .mk{width:30px;height:30px}
+.foot .w3d{font-size:18px}
+
+/* ===== documents (paper, same in both themes); sizes scale with --k so every word fits ===== */
+.docbox{container-type:inline-size;width:100%}
+.doc{--k:1;--dc:#25418f;--dc2:#c99528;--dts:7cqi;position:relative;aspect-ratio:1.414/1;background:var(--paper);color:var(--paper-ink);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.12),0 18px 40px rgba(10,20,40,.16);overflow:hidden;font-family:var(--f-body)}
+.doc .band{position:absolute;inset:2.2cqi;background:var(--pat),var(--dc);border-radius:.5cqi}
+.doc .in{position:absolute;inset:4.2cqi;background:var(--paper);border:.22cqi solid var(--dc2);display:flex;flex-direction:column;align-items:center;text-align:center;padding:3cqi 4.6cqi 2.4cqi;overflow:hidden}
+.doc .brand{display:flex;align-items:center;gap:1cqi;font-family:var(--f-display);font-weight:800;font-size:calc(var(--k)*2.4cqi);color:var(--dc);letter-spacing:.06em}
+.doc .brand .mk{width:calc(var(--k)*4cqi);height:calc(var(--k)*4cqi)}
+.doc .dtype{--fw:1;font-family:var(--f-display);font-weight:800;font-size:calc(var(--k)*var(--fw)*var(--dts));letter-spacing:.1em;color:var(--dc);margin-top:calc(var(--k)*1.8cqi);line-height:1.05;white-space:nowrap;align-self:stretch;text-align:center;overflow:hidden;flex:none}
+.doc .dsub{font-size:calc(var(--k)*1.7cqi);letter-spacing:.18em;text-transform:uppercase;color:var(--paper-muted);margin-top:calc(var(--k)*1cqi);line-height:1.35}
+.doc .dname{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:calc(var(--k)*4.2cqi);margin-top:calc(var(--k)*2cqi);border-bottom:.14cqi solid #cfc8b6;padding:0 3cqi .5cqi;line-height:1.15;max-width:100%;overflow-wrap:anywhere}
+.doc .dtext{font-size:calc(var(--k)*1.75cqi);margin-top:calc(var(--k)*1.3cqi);color:#40465a;max-width:74cqi;line-height:1.45}
+.doc .dcourse{font-family:var(--f-display);font-weight:600;font-size:calc(var(--k)*2.8cqi);margin-top:calc(var(--k)*.7cqi);line-height:1.2;color:var(--paper-ink);max-width:100%;overflow-wrap:anywhere}
+.doc .dmeta{font-size:calc(var(--k)*1.5cqi);color:var(--paper-muted);margin-top:calc(var(--k)*1.2cqi);line-height:1.5;font-variant-numeric:tabular-nums}
+.doc .dlist{font-size:calc(var(--k)*1.4cqi);color:var(--paper-muted);margin-top:calc(var(--k)*.7cqi);line-height:1.45}
+.doc .dfoot{margin-top:auto;width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:2cqi;font-size:calc(var(--k)*1.3cqi);color:var(--paper-muted);text-align:left;padding-top:calc(var(--k)*1cqi);flex:none}
+.doc .num{font-family:var(--f-mono);color:var(--paper-ink);font-size:calc(var(--k)*1.5cqi);display:block;margin-top:.3cqi;white-space:nowrap}
+.doc .seal{width:calc(var(--k)*12cqi);height:calc(var(--k)*12cqi);color:var(--dc);opacity:.82;transform:rotate(-12deg)}
+.doc .sign{text-align:right}
+.doc .sign i{display:block;border-bottom:.12cqi solid #a39c87;margin-bottom:.5cqi;font-family:var(--f-display);font-size:calc(var(--k)*2.5cqi);color:var(--dc);padding-bottom:.1cqi}
+.doc.udost{--dc:#13694f;--dts:4.4cqi}
+.doc.udost .in{flex-direction:row;padding:0;align-items:stretch;text-align:left}
+.doc.udost .pg{flex:1 1 0;padding:3cqi 3.4cqi 2.4cqi;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.doc.udost .pg.l{background:color-mix(in srgb,var(--dc) 7%,var(--paper));border-right:.2cqi dashed #c9c1ad;align-items:center;text-align:center;justify-content:center;gap:.3cqi}
+.doc.udost .pg.l>.mk{width:calc(var(--k)*9cqi);height:calc(var(--k)*9cqi)}
+.doc.udost .dname{font-size:calc(var(--k)*3.4cqi);padding:0 0 .4cqi;margin-top:calc(var(--k)*.8cqi)}
+.doc.udost .dtext,.doc.udost .dcourse{max-width:none}
+.doc.udost .dcourse{font-size:calc(var(--k)*2.4cqi)}
+.doc.udost .dfoot{grid-template-columns:auto 1fr;gap:2cqi}
+.doc.udost .num{font-size:calc(var(--k)*1.8cqi);margin-top:calc(var(--k)*1.6cqi)}
+.doc.diploma{--dc:#9b1c31;--dc2:#c99528;--dts:8cqi}
+.doc.diploma .band{inset:1.6cqi}
+.doc.diploma .in{inset:4.6cqi;border-width:.35cqi;outline:.15cqi solid var(--dc2);outline-offset:-1cqi}
+.doc .wm{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font-family:var(--f-display);font-weight:800;font-size:10cqi;letter-spacing:.16em;color:var(--dc);opacity:.07;transform:rotate(-14deg)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div id="sprite"></div>
+<header class="top" id="top"></header>
+<main id="app"></main>
+<footer class="foot" id="foot"></footer>
+<div class="modal" id="modal" hidden></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ================= storage ================= */
+const MEM = {};
+const LS = {
+  get(k, d){ try{ const v = localStorage.getItem(k); if(v!=null) return JSON.parse(v); }catch(e){} return k in MEM ? MEM[k] : d; },
+  set(k, v){ MEM[k] = v; try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  del(k){ delete MEM[k]; try{ localStorage.removeItem(k); }catch(e){} }
+};
+let LANG = LS.get('rh.lang', 'tj'); if(LANG !== 'tj' && LANG !== 'ru') LANG = 'tj';
+
+/* ================= helpers ================= */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate = iso => { const d = new Date(iso); return String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + d.getFullYear(); };
+const norm = s => String(s ?? '').toLowerCase().replace(/ё/g,'е').replace(/\s+/g,' ').trim();
+const initials = n => n.trim().split(/\s+/).slice(0,2).map(w => w[0] || '').join('').toUpperCase();
+const firstName = n => n.trim().split(/\s+/)[0];
+const NOUN = {
+  course:{ru:['курс','курса','курсов'], tj:'курс'}, lesson:{ru:['урок','урока','уроков'], tj:'дарс'},
+  task:{ru:['задание','задания','заданий'], tj:'супориш'}, module:{ru:['модуль','модуля','модулей'], tj:'модул'},
+  question:{ru:['вопрос','вопроса','вопросов'], tj:'савол'}, step:{ru:['шаг','шага','шагов'], tj:'қадам'},
+  attempt:{ru:['попытку','попытки','попыток'], tj:'кӯшиш'}
+};
+function N(n, key){
+  if(LANG === 'tj') return n + ' ' + NOUN[key].tj;
+  const f = NOUN[key].ru, a = Math.abs(n) % 100, b = a % 10;
+  return n + ' ' + (a > 10 && a < 20 ? f[2] : b > 1 && b < 5 ? f[1] : b === 1 ? f[0] : f[2]);
+}
+
+/* ================= i18n ================= */
+const I = {
+ru:{
+  nav_home:'Главная', nav_courses:'Курсы', nav_tracks:'Профессии', nav_verify:'Проверить документ',
+  login:'Войти', signup:'Регистрация', home_aria:'Роҳнамо — на главную', cab_aria:'Личный кабинет',
+  eyebrow_hero:'Онлайн-платформа обучения · Душанбе',
+  hero_tr:'<b>роҳнамо</b> — по-таджикски «проводник», тот, кто указывает путь',
+  hero_lead:'Курсы по программированию, данным, видео, маркетингу и языкам. Учитесь по шагам, решайте задания с мгновенной проверкой и получайте сертификат, удостоверение или диплом с номером для проверки.',
+  cta_start:'Начать бесплатно', cta_continue:'Продолжить обучение', cta_catalog:'Смотреть курсы', hero_cap:'«Нет сокровища дороже знаний» <small>Рудаки</small>',
+  st_courses:'курсов', st_lessons:'уроков', st_tasks:'заданий с проверкой', st_hours:'академических часов',
+  cat_eyebrow:'Каталог', pick_dir:'Выберите направление', all_courses:'Все курсы →',
+  how_eyebrow:'Как проходит обучение', how_title:'Четыре шага до документа',
+  how1t:'Создайте аккаунт', how1:'Укажите имя так, как оно должно быть напечатано в документе.',
+  how2t:'Уроки и задания', how2:'Короткие уроки и задачи с мгновенной проверкой. Прогресс сохраняется после каждого шага.',
+  how3t:'Итоговый экзамен', how3:'Открывается после всех шагов. Нужно не меньше 70% верных ответов, пересдавать можно без ограничений.',
+  how4t:'Документ', how4:'Выдаётся сразу после экзамена, с регистрационным номером для проверки подлинности.',
+  docs_eyebrow:'Документы об обучении', docs_title:'Сертификат, удостоверение, диплом',
+  docs_p:'Вид документа зависит от программы. Все три появляются в личном кабинете и проверяются по номеру.',
+  d_cert_t:'Сертификат', d_cert_p:'За любой курс объёмом до 72 часов: Python, SQL, Excel, Figma, монтаж, языки.',
+  d_udost_t:'Удостоверение о повышении квалификации', d_udost_p:'За программы на 72 академических часа: веб-разработка, анализ данных, цветокоррекция.',
+  d_dip_t:'Диплом о профессиональной переподготовке', d_dip_p:'За профессию — три связанных курса, пройденных полностью.',
+  tr_eyebrow:'Профессии', tr_title:'Три курса — одна профессия', tr_p:'Курсы засчитываются в профессию в любом порядке, рекомендуемый указан номером.',
+  tr_page_eyebrow:'Профессиональная переподготовка', tr_page_title:'Профессии',
+  tr_page_lead:'Пройдите три курса профессии полностью — и получите диплом о профессиональной переподготовке. Сертификаты и удостоверения за каждый курс остаются у вас.',
+  profession:h => `Профессия · ${h} ак. ч`, tr_after:'По окончании — <strong>диплом о профессиональной переподготовке</strong>', open_diploma:'Открыть диплом', of3:n => `${n} из 3`,
+  catalog_title:'Курсы Роҳнамо', search_ph:'Поиск: Python, монтаж, Excel…', search_aria:'Поиск курсов', f_dir:'Направление', f_level:'Уровень', f_doc:'Документ', any:'Любой',
+  nothing:'Ничего не найдено. Измените запрос или сбросьте фильтры.', reset:'Сбросить фильтры',
+  hrs:h => `${h} ак. ч`, got:k => k === 'udost' ? 'Удостоверение получено' : 'Сертификат получен',
+  back_catalog:'← Каталог', learn_title:'Чему вы научитесь', program:'Программа курса', module_n:n => `Модуль ${n}`, final:'Финал', exam:'Итоговый экзамен',
+  pass70:'проходной балл 70%', doc_after:'Документ по окончании',
+  doc_after_p:k => (k === 'udost' ? 'Удостоверение о повышении квалификации' : 'Сертификат о прохождении курса') + ' с вашим именем, объёмом часов, итоговой оценкой и регистрационным номером.',
+  your_progress:'Ваш прогресс', enroll_free:'Записаться бесплатно', start:'Начать обучение', continue_l:'Продолжить обучение', repeat:'Повторить материал',
+  open_doc:k => 'Открыть ' + ({cert:'сертификат', udost:'удостоверение', diploma:'диплом'})[k],
+  f_format:'Формат', f_format_v:'Онлайн, в своём темпе', f_volume:'Объём', f_price:'Стоимость', f_free:'Бесплатно', f_lang:'Язык уроков', f_lang_v:'Русский', in_tracks:'Входит в профессии',
+  need_login:'Нужен вход', need_learn:'Войдите, чтобы учиться', need_cab:'Личный кабинет', need_p:'Войдите или зарегистрируйтесь — это бесплатно и занимает минуту.',
+  toc:'Содержание курса', lesson:'Урок', practice:'Практика', quiz_intro:'Ответьте верно на все вопросы, чтобы засчитать шаг. Попыток сколько угодно.',
+  step_ok:'✓ Шаг засчитан', resolve:'Решить заново', check:'Проверить', back:'← Назад', next:'Следующий шаг →', to_exam:'К экзамену →',
+  q_n:n => `Вопрос ${n}`, several:' · несколько ответов', right:'Верно', wrong_retry:'Неверно, попробуйте ещё раз', wrong:'Неверно', your_answer:'Ваш ответ', steps_aria:'Шаги курса', step_aria:(n, t) => `Шаг ${n}: ${t}`,
+  lessons_lang:'',
+  exam_locked:'Экзамен откроется после всех шагов курса', exam_left:n => `Осталось пройти: ${N(n, 'step')}. Решённые задания засчитываются сразу.`, first_open:'К первому незавершённому шагу',
+  passed:'Экзамен сдан', not_passed:'Пока не сдан — нужно 70%', doc_ready:k => `Ваш ${({cert:'сертификат', udost:'удостоверение', diploma:'диплом'})[k]} уже в личном кабинете.`,
+  fix_retry:'Посмотрите, где ошибки, повторите уроки и попробуйте снова.', retake_better:'Пересдать для улучшения', retake:'Пересдать',
+  best_of:n => `Лучший результат за ${N(n, 'attempt')}.`, exam_intro:(n, k) => `${N(n, 'question')}. Проходной балл — 70%. После сдачи ${({cert:'сертификат', udost:'удостоверение', diploma:'диплом'})[k]} появится в кабинете сразу.`, submit_exam:'Сдать экзамен',
+  answer_all:'Ответьте на все вопросы', step_done_toast:'Отлично! Шаг засчитан', right_x:(a, b) => `Верно ${a} из ${b}`, enrolled_toast:t => `Вы записаны на курс «${t}»`,
+  hello_toast:n => `Вы вошли, ${n}`, created_toast:'Аккаунт создан. Добро пожаловать!', demo_toast:'Вы в демо-аккаунте', logout_toast:'Вы вышли из аккаунта',
+  copied:'Номер скопирован', num_is:v => 'Номер: ' + v, name_saved:'Имя сохранено', name_short:'Имя слишком короткое',
+  cab_eyebrow:'Личный кабинет', hi:n => `Салом, ${n}!`, logout:'Выйти', t_active:'в процессе', t_done:'завершено', t_docs:'документов', t_hours:'ак. часов пройдено',
+  my_courses:'Мои курсы', no_courses:'Вы ещё не записались ни на один курс.', pick_course:'Выбрать курс', cont:'Продолжить', about:'О курсе',
+  my_docs:'Мои документы', no_docs:'Документы появятся здесь после сдачи итогового экзамена.', account:'Аккаунт', name_docs:'Имя для документов',
+  name_hint:e => `Новое имя попадёт в документы, выданные после изменения. Email: ${e}`, save:'Сохранить',
+  d_kind:'Вид', d_issued:'Выдан', d_num:'Номер', d_date:'Дата', d_vol:'Объём', d_score:'Оценка', d_avg:'Средний балл', copy_num:'Скопировать номер', verify_auth:'Проверить подлинность', to_cab:'← В кабинет',
+  d_hint:'Номер документа можно передать работодателю: он проверит его на странице «Проверить документ».', doc_nf:'Документ не найден.',
+  full_cert:'Сертификат о прохождении курса', full_udost:'Удостоверение о повышении квалификации', full_diploma:'Диплом о профессиональной переподготовке',
+  v_eyebrow:'Проверка подлинности', v_title:'Проверить документ', v_lead:'Введите номер сертификата, удостоверения или диплома. Номер напечатан внизу документа.', v_btn:'Проверить', v_aria:'Номер документа',
+  v_ok:'✓ Документ действителен', v_prog:'Программа', v_date:'Дата выдачи', v_view:'Посмотреть документ', v_nf:v => `Документ с номером ${v} не найден`,
+  v_nf_p:'Проверьте номер: он состоит из букв РН, буквы вида документа (С, У или Д), года и шести цифр.',
+  a_login_h:'Вход в Роҳнамо', a_signup_h:'Создать аккаунт', tab_login:'Вход', tab_signup:'Регистрация', email:'Email', pass:'Пароль', do_login:'Войти',
+  fio:'Фамилия и имя', fio_hint:'Так имя будет напечатано в сертификате и дипломе', pass_hint:'Не меньше 6 символов', pass2:'Повторите пароль', do_signup:'Создать аккаунт',
+  or:'или', demo:'Войти в демо-аккаунт', demo_hint:'В демо-аккаунте уже пройден курс таджикского языка и выдан сертификат.', close:'Закрыть',
+  e_empty:'Введите email и пароль.', e_bad:'Неверный email или пароль.', e_name:'Укажите фамилию и имя полностью — они будут в документах.',
+  e_email:'Проверьте email: похоже, в адресе опечатка.', e_pass:'Пароль должен быть не короче 6 символов.', e_match:'Пароли не совпадают.', e_exists:'Аккаунт с таким email уже есть. Войдите на вкладке «Вход».',
+  cel_eyebrow:'Табрик! Поздравляем', cel_one:k => 'Вы получили ' + ({cert:'сертификат', udost:'удостоверение', diploma:'диплом'})[k], cel_many:'Вы получили новые документы', open_doc2:'Открыть документ', to_cab2:'В кабинет',
+  foot:'онлайн-платформа обучения, Душанбе', your_name:'Ваше имя', sample:'ОБРАЗЕЦ',
+  kind:{cert:'Сертификат', udost:'Удостоверение', diploma:'Диплом'}, lv:{b:'С нуля', m:'Средний'},
+  cats:{all:'Все', it:'Программирование', data:'Данные', media:'Видео и дизайн', biz:'Бизнес и финансы', lang:'Языки'},
+  doc:{
+    cert_type:'СЕРТИФИКАТ', cert_sub:'о прохождении курса', cert_text:'успешно завершил(а) обучение на онлайн-платформе «Роҳнамо» по курсу',
+    dip_type:'ДИПЛОМ', dip_sub:'о профессиональной переподготовке', dip_text:'прошёл(ла) профессиональную переподготовку на онлайн-платформе «Роҳнамо» по программе',
+    vol:h => `Объём: ${h} ак. ч`, score:'Итоговая оценка', avg:'Средний балл итоговых аттестаций', issued:'Дата выдачи', reg:'Регистрационный номер',
+    courses:'Освоены курсы', sign:'Руководитель учебной части',
+    udost_type:'УДОСТОВЕРЕНИЕ', udost_sub:'о повышении квалификации', city:'г. Душанбе', udost_t1:'Настоящее удостоверение выдано',
+    udost_t2:'в том, что он(а) прошёл(ла) обучение на онлайн-платформе «Роҳнамо» по программе повышения квалификации', udost_vol:h => `в объёме ${h} академических часов.`, att:'Итоговая аттестация',
+    seal:'РОҲНАМО • ПЛАТФОРМА ОБУЧЕНИЯ • ДУШАНБЕ •'
+  }
+},
+tj:{
+  nav_home:'Асосӣ', nav_courses:'Курсҳо', nav_tracks:'Касбҳо', nav_verify:'Санҷиши ҳуҷҷат',
+  login:'Ворид шудан', signup:'Бақайдгирӣ', home_aria:'Роҳнамо — ба саҳифаи асосӣ', cab_aria:'Кабинети шахсӣ',
+  eyebrow_hero:'Платформаи онлайни таълимӣ · Душанбе',
+  hero_tr:'<b>роҳнамо</b> — касе, ки роҳро нишон медиҳад',
+  hero_lead:'Курсҳо оид ба барномасозӣ, таҳлили маълумот, видео, маркетинг ва забонҳо. Қадам ба қадам омӯзед, супоришҳоро бо санҷиши фаврӣ ҳал кунед ва сертификат, шаҳодатнома ё диплом бо рақами санҷишӣ гиред.',
+  cta_start:'Ройгон оғоз кунед', cta_continue:'Идомаи таҳсил', cta_catalog:'Дидани курсҳо', hero_cap:'«Ҳеҷ ганҷе нест аз фарҳанг беҳ» <small>Рӯдакӣ</small>',
+  st_courses:'курс', st_lessons:'дарс', st_tasks:'супориш бо санҷиш', st_hours:'соати академӣ',
+  cat_eyebrow:'Каталог', pick_dir:'Самтро интихоб кунед', all_courses:'Ҳамаи курсҳо →',
+  how_eyebrow:'Таҳсил чӣ тавр мегузарад', how_title:'Чор қадам то ҳуҷҷат',
+  how1t:'Ҳисоб кушоед', how1:'Номатонро ҳамон тавре нависед, ки бояд дар ҳуҷҷат чоп шавад.',
+  how2t:'Дарсҳо ва супоришҳо', how2:'Дарсҳои кӯтоҳ ва масъалаҳо бо санҷиши фаврӣ. Пешрафт пас аз ҳар қадам нигоҳ дошта мешавад.',
+  how3t:'Имтиҳони ниҳоӣ', how3:'Пас аз ҳамаи қадамҳо кушода мешавад. Камаш 70% ҷавобҳои дуруст лозим аст, такроран супоридан маҳдуд нест.',
+  how4t:'Ҳуҷҷат', how4:'Фавран пас аз имтиҳон бо рақами бақайдгирӣ барои санҷиши аслият дода мешавад.',
+  docs_eyebrow:'Ҳуҷҷатҳо дар бораи таҳсил', docs_title:'Сертификат, шаҳодатнома, диплом',
+  docs_p:'Навъи ҳуҷҷат аз барнома вобаста аст. Ҳар се дар кабинети шахсӣ пайдо мешаванд ва аз рӯи рақам санҷида мешаванд.',
+  d_cert_t:'Сертификат', d_cert_p:'Барои ҳар курси то 72 соат: Python, SQL, Excel, Figma, монтаж, забонҳо.',
+  d_udost_t:'Шаҳодатнома дар бораи такмили ихтисос', d_udost_p:'Барои барномаҳои 72-соатаи академӣ: веб-барномасозӣ, таҳлили маълумот, ислоҳи ранг.',
+  d_dip_t:'Диплом дар бораи бозомӯзии касбӣ', d_dip_p:'Барои касб — се курси ба ҳам алоқаманд, ки пурра хатм шудаанд.',
+  tr_eyebrow:'Касбҳо', tr_title:'Се курс — як касб', tr_p:'Курсҳо ба касб бо ҳар тартибе ҳисоб мешаванд, тартиби тавсияшуда бо рақам нишон дода шудааст.',
+  tr_page_eyebrow:'Бозомӯзии касбӣ', tr_page_title:'Касбҳо',
+  tr_page_lead:'Се курси касбро пурра хатм кунед ва диплом дар бораи бозомӯзии касбӣ гиред. Сертификатҳо ва шаҳодатномаҳо барои ҳар курс низ бо шумо мемонанд.',
+  profession:h => `Касб · ${h} соати академӣ`, tr_after:'Дар анҷом — <strong>диплом дар бораи бозомӯзии касбӣ</strong>', open_diploma:'Кушодани диплом', of3:n => `${n} аз 3`,
+  catalog_title:'Курсҳои Роҳнамо', search_ph:'Ҷустуҷӯ: Python, монтаж, Excel…', search_aria:'Ҷустуҷӯи курсҳо', f_dir:'Самт', f_level:'Сатҳ', f_doc:'Ҳуҷҷат', any:'Ҳама',
+  nothing:'Чизе ёфт нашуд. Дархост ё филтрҳоро тағйир диҳед.', reset:'Бекор кардани филтрҳо',
+  hrs:h => `${h} соат`, got:k => (k === 'udost' ? 'Шаҳодатнома' : 'Сертификат') + ' гирифта шуд',
+  back_catalog:'← Каталог', learn_title:'Шумо чӣ меомӯзед', program:'Барномаи курс', module_n:n => `Модули ${n}`, final:'Ниҳоӣ', exam:'Имтиҳони ниҳоӣ',
+  pass70:'холи гузариш 70%', doc_after:'Ҳуҷҷат дар анҷоми курс',
+  doc_after_p:k => (k === 'udost' ? 'Шаҳодатнома дар бораи такмили ихтисос' : 'Сертификат дар бораи хатми курс') + ' бо номи шумо, ҳаҷми соатҳо, баҳои ниҳоӣ ва рақами бақайдгирӣ.',
+  your_progress:'Пешрафти шумо', enroll_free:'Ройгон сабти ном шавед', start:'Оғози таҳсил', continue_l:'Идомаи таҳсил', repeat:'Такрори мавод',
+  open_doc:k => 'Кушодани ' + ({cert:'сертификат', udost:'шаҳодатнома', diploma:'диплом'})[k],
+  f_format:'Шакл', f_format_v:'Онлайн, бо суръати худ', f_volume:'Ҳаҷм', f_price:'Нарх', f_free:'Ройгон', f_lang:'Забони дарсҳо', f_lang_v:'Русӣ', in_tracks:'Ба касбҳо дохил мешавад',
+  need_login:'Воридшавӣ лозим', need_learn:'Барои таҳсил ворид шавед', need_cab:'Кабинети шахсӣ', need_p:'Ворид шавед ё сабти ном кунед — ин ройгон аст ва як дақиқа вақт мегирад.',
+  toc:'Мундариҷаи курс', lesson:'Дарс', practice:'Амалия', quiz_intro:'Ба ҳамаи саволҳо дуруст ҷавоб диҳед, то қадам ҳисоб шавад. Шумораи кӯшишҳо маҳдуд нест.',
+  step_ok:'✓ Қадам ҳисоб шуд', resolve:'Аз нав ҳал кардан', check:'Санҷидан', back:'← Ба қафо', next:'Қадами навбатӣ →', to_exam:'Ба имтиҳон →',
+  q_n:n => `Саволи ${n}`, several:' · якчанд ҷавоб', right:'Дуруст', wrong_retry:'Нодуруст, боз кӯшиш кунед', wrong:'Нодуруст', your_answer:'Ҷавоби шумо', steps_aria:'Қадамҳои курс', step_aria:(n, t) => `Қадами ${n}: ${t}`,
+  lessons_lang:'Маводи дарсҳо ҳоло бо забони русӣ аст',
+  exam_locked:'Имтиҳон пас аз ҳамаи қадамҳои курс кушода мешавад', exam_left:n => `Боқӣ мондааст: ${N(n, 'step')}. Супоришҳои ҳалшуда фавран ҳисоб мешаванд.`, first_open:'Ба қадами нотамоми аввал',
+  passed:'Имтиҳон супорида шуд', not_passed:'Ҳанӯз насупоридед — 70% лозим аст', doc_ready:k => `${({cert:'Сертификат', udost:'Шаҳодатнома', diploma:'Диплом'})[k]} аллакай дар кабинети шахсии шумост.`,
+  fix_retry:'Хатоҳоро бинед, дарсҳоро такрор кунед ва боз кӯшиш кунед.', retake_better:'Барои беҳтар кардан такроран супоридан', retake:'Такроран супоридан',
+  best_of:n => `Натиҷаи беҳтарин аз ${N(n, 'attempt')}.`, exam_intro:(n, k) => `${N(n, 'question')}. Холи гузариш — 70%. Пас аз супоридан ${({cert:'сертификат', udost:'шаҳодатнома', diploma:'диплом'})[k]} фавран дар кабинет пайдо мешавад.`, submit_exam:'Супоридани имтиҳон',
+  answer_all:'Ба ҳамаи саволҳо ҷавоб диҳед', step_done_toast:'Офарин! Қадам ҳисоб шуд', right_x:(a, b) => `Дуруст: ${a} аз ${b}`, enrolled_toast:t => `Шумо ба курси «${t}» сабт шудед`,
+  hello_toast:n => `Хуш омадед, ${n}`, created_toast:'Ҳисоб сохта шуд. Хуш омадед!', demo_toast:'Шумо дар ҳисоби намоишӣ ҳастед', logout_toast:'Шумо аз ҳисоб баромадед',
+  copied:'Рақам нусхабардорӣ шуд', num_is:v => 'Рақам: ' + v, name_saved:'Ном нигоҳ дошта шуд', name_short:'Ном хеле кӯтоҳ аст',
+  cab_eyebrow:'Кабинети шахсӣ', hi:n => `Салом, ${n}!`, logout:'Баромад', t_active:'дар раванд', t_done:'хатмшуда', t_docs:'ҳуҷҷат', t_hours:'соати академии гузашта',
+  my_courses:'Курсҳои ман', no_courses:'Шумо ҳоло ба ягон курс сабти ном нашудаед.', pick_course:'Интихоби курс', cont:'Идома', about:'Дар бораи курс',
+  my_docs:'Ҳуҷҷатҳои ман', no_docs:'Ҳуҷҷатҳо пас аз супоридани имтиҳони ниҳоӣ дар ин ҷо пайдо мешаванд.', account:'Ҳисоб', name_docs:'Ном барои ҳуҷҷатҳо',
+  name_hint:e => `Номи нав дар ҳуҷҷатҳое чоп мешавад, ки пас аз тағйир дода мешаванд. Почта: ${e}`, save:'Нигоҳ доштан',
+  d_kind:'Навъ', d_issued:'Дода шуд ба', d_num:'Рақам', d_date:'Сана', d_vol:'Ҳаҷм', d_score:'Баҳо', d_avg:'Холи миёна', copy_num:'Нусхаи рақам', verify_auth:'Санҷиши аслият', to_cab:'← Ба кабинет',
+  d_hint:'Рақами ҳуҷҷатро ба корфармо диҳед: ӯ онро дар саҳифаи «Санҷиши ҳуҷҷат» месанҷад.', doc_nf:'Ҳуҷҷат ёфт нашуд.',
+  full_cert:'Сертификат дар бораи хатми курс', full_udost:'Шаҳодатнома дар бораи такмили ихтисос', full_diploma:'Диплом дар бораи бозомӯзии касбӣ',
+  v_eyebrow:'Санҷиши аслият', v_title:'Санҷиши ҳуҷҷат', v_lead:'Рақами сертификат, шаҳодатнома ё дипломро ворид кунед. Рақам дар поёни ҳуҷҷат чоп шудааст.', v_btn:'Санҷидан', v_aria:'Рақами ҳуҷҷат',
+  v_ok:'✓ Ҳуҷҷат эътибор дорад', v_prog:'Барнома', v_date:'Санаи додан', v_view:'Дидани ҳуҷҷат', v_nf:v => `Ҳуҷҷат бо рақами ${v} ёфт нашуд`,
+  v_nf_p:'Рақамро санҷед: он аз ҳарфҳои РН, ҳарфи навъи ҳуҷҷат (С, У ё Д), сол ва шаш рақам иборат аст.',
+  a_login_h:'Воридшавӣ ба Роҳнамо', a_signup_h:'Кушодани ҳисоб', tab_login:'Вуруд', tab_signup:'Бақайдгирӣ', email:'Почтаи электронӣ', pass:'Рамз', do_login:'Ворид шудан',
+  fio:'Насаб ва ном', fio_hint:'Ном маҳз ҳамин тавр дар сертификат ва диплом чоп мешавад', pass_hint:'На камтар аз 6 аломат', pass2:'Рамзро такрор кунед', do_signup:'Сохтани ҳисоб',
+  or:'ё', demo:'Вуруд ба ҳисоби намоишӣ', demo_hint:'Дар ҳисоби намоишӣ курси забони тоҷикӣ аллакай хатм шуда, сертификат дода шудааст.', close:'Пӯшидан',
+  e_empty:'Почта ва рамзро ворид кунед.', e_bad:'Почта ё рамз нодуруст аст.', e_name:'Насаб ва номро пурра нависед — онҳо дар ҳуҷҷатҳо чоп мешаванд.',
+  e_email:'Почтаро санҷед: эҳтимол дар суроға хато ҳаст.', e_pass:'Рамз бояд на камтар аз 6 аломат бошад.', e_match:'Рамзҳо мувофиқат намекунанд.', e_exists:'Ҳисоб бо ин почта аллакай вуҷуд дорад. Дар бахши «Вуруд» ворид шавед.',
+  cel_eyebrow:'Табрик мегӯем!', cel_one:k => 'Шумо ' + ({cert:'сертификат', udost:'шаҳодатнома', diploma:'диплом'})[k] + ' гирифтед', cel_many:'Шумо ҳуҷҷатҳои нав гирифтед', open_doc2:'Кушодани ҳуҷҷат', to_cab2:'Ба кабинет',
+  foot:'платформаи онлайни таълимӣ, Душанбе', your_name:'Номи шумо', sample:'НАМУНА',
+  kind:{cert:'Сертификат', udost:'Шаҳодатнома', diploma:'Диплом'}, lv:{b:'Аз сифр', m:'Миёна'},
+  cats:{all:'Ҳама', it:'Барномасозӣ', data:'Маълумот', media:'Видео ва дизайн', biz:'Тиҷорат ва молия', lang:'Забонҳо'},
+  doc:{
+    cert_type:'СЕРТИФИКАТ', cert_sub:'дар бораи хатми курс', cert_text:'таҳсилро дар платформаи онлайни таълимии «Роҳнамо» аз рӯи курси зерин бомуваффақият анҷом додааст',
+    dip_type:'ДИПЛОМ', dip_sub:'дар бораи бозомӯзии касбӣ', dip_text:'дар платформаи онлайни таълимии «Роҳнамо» аз рӯи барномаи зерин бозомӯзии касбӣ гузаштааст',
+    vol:h => `Ҳаҷм: ${h} соати академӣ`, score:'Баҳои ниҳоӣ', avg:'Холи миёнаи аттестатсияҳои ниҳоӣ', issued:'Санаи додан', reg:'Рақами бақайдгирӣ',
+    courses:'Курсҳои хатмшуда', sign:'Роҳбари қисми таълим',
+    udost_type:'ШАҲОДАТНОМА', udost_sub:'дар бораи такмили ихтисос', city:'ш. Душанбе', udost_t1:'Ин шаҳодатнома дода шуд ба',
+    udost_t2:'дар он, ки ӯ дар платформаи онлайни таълимии «Роҳнамо» аз рӯи барномаи такмили ихтисоси зерин таҳсил кардааст', udost_vol:h => `ба ҳаҷми ${h} соати академӣ.`, att:'Аттестатсияи ниҳоӣ',
+    seal:'РОҲНАМО • ПЛАТФОРМАИ ТАЪЛИМӢ • ДУШАНБЕ •'
+  }
+}};
+const t = (k, ...a) => { const v = I[LANG][k] ?? I.ru[k]; return typeof v === 'function' ? v(...a) : v; };
+const KIND = () => I[LANG].kind;
+const DT = (k, ...a) => { const v = I[LANG].doc[k]; return typeof v === 'function' ? v(...a) : v; };
+
+/* ================= brand mark (3D portal) ================= */
+function starPts(cx, cy, R, r, n = 8){
+  const p = [];
+  for(let i = 0; i < n * 2; i++){ const a = Math.PI / n * i - Math.PI / 2; const rr = i % 2 ? r : R; p.push((cx + Math.cos(a) * rr).toFixed(2) + ',' + (cy + Math.sin(a) * rr).toFixed(2)); }
+  return p.join(' ');
+}
+document.getElementById('sprite').innerHTML = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="rhLapis" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f8cf2"/><stop offset=".45" stop-color="#2a4cb4"/><stop offset="1" stop-color="#172f78"/></linearGradient>
+  <linearGradient id="rhSide" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10224f"/><stop offset="1" stop-color="#050d26"/></linearGradient>
+  <linearGradient id="rhGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".42" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="rhGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff5cc"/><stop offset=".28" stop-color="#f6c85c"/><stop offset=".58" stop-color="#c3851a"/><stop offset=".82" stop-color="#ffe49a"/><stop offset="1" stop-color="#b3740e"/></linearGradient>
+  <linearGradient id="rhGoldV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a6"/><stop offset=".5" stop-color="#e2a737"/><stop offset="1" stop-color="#a86a0b"/></linearGradient>
+  <linearGradient id="rhSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070f2c"/><stop offset=".42" stop-color="#1d3a90"/><stop offset=".64" stop-color="#b8664e"/><stop offset=".76" stop-color="#f6b14a"/><stop offset="1" stop-color="#ffd98a"/></linearGradient>
+  <linearGradient id="rhRoad" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff0bd"/><stop offset=".55" stop-color="#f3b544"/><stop offset="1" stop-color="#f3b544" stop-opacity=".1"/></linearGradient>
+  <radialGradient id="rhGlow"><stop offset="0" stop-color="#fff8dc"/><stop offset=".35" stop-color="#ffd36a" stop-opacity=".7"/><stop offset="1" stop-color="#f6c453" stop-opacity="0"/></radialGradient>
+</defs><symbol id="rh-mark" viewBox="0 0 64 64">
+  <ellipse cx="33.5" cy="61.2" rx="23" ry="2.4" fill="#000" opacity=".2"/>
+  <rect x="12.4" y="7.4" width="44" height="50" rx="6" fill="url(#rhSide)"/>
+  <rect x="9.4" y="4.4" width="44" height="50" rx="6" fill="url(#rhLapis)"/>
+  <rect x="9.4" y="4.4" width="44" height="50" rx="6" fill="url(#rhGloss)"/>
+  <rect x="11.7" y="6.7" width="39.4" height="45.4" rx="4" fill="none" stroke="url(#rhGold)" stroke-width="1.1"/>
+  <path d="M20.4 52.2V29Q20.4 18.6 31.4 12.4Q42.4 18.6 42.4 29V52.2Z" fill="url(#rhSky)"/>
+  <circle cx="25" cy="18" r=".45" fill="#fff" opacity=".8"/><circle cx="37.6" cy="17.2" r=".35" fill="#fff" opacity=".7"/><circle cx="39.4" cy="23" r=".4" fill="#fff" opacity=".6"/><circle cx="23.2" cy="24.6" r=".3" fill="#fff" opacity=".6"/>
+  <path d="M20.4 40.6L24.6 35.6L27.4 37.8L31.4 32.4L35.8 37.4L38.8 35L42.4 38.6V45H20.4Z" fill="#162a66"/>
+  <path d="M29.9 34.4L31.4 32.4L33 34.6L31.5 34Z" fill="#fff" opacity=".9"/><path d="M23.7 36.6L24.6 35.6L25.4 36.3Z" fill="#fff" opacity=".7"/>
+  <rect x="20.4" y="44" width="22" height="8.2" fill="#0d1c49"/>
+  <path d="M24.4 52.2L38.4 52.2L32.2 39L30.6 39Z" fill="url(#rhRoad)"/>
+  <path d="M31.4 51V40.6" stroke="#fff8e0" stroke-width=".55" stroke-dasharray="1.6 1.6" opacity=".85"/>
+  <path d="M20.4 52.2V29Q20.4 18.6 31.4 12.4L31.4 14.8Q22.5 20.2 22.5 29.4V52.2Z" fill="#050c26" opacity=".38"/>
+  <circle cx="31.4" cy="24.6" r="8.6" fill="url(#rhGlow)"/>
+  <polygon points="${starPts(31.4, 24.6, 4.8, 2.2)}" fill="url(#rhGold)" stroke="#8a5a0a" stroke-width=".35" stroke-linejoin="round"/>
+  <path d="M20.4 52.2V29Q20.4 18.6 31.4 12.4Q42.4 18.6 42.4 29V52.2" fill="none" stroke="url(#rhGold)" stroke-width="2.3" stroke-linejoin="round"/>
+  <path d="M19.5 51.6V29Q19.5 18 31.4 11.2" fill="none" stroke="#fff7da" stroke-width=".55" opacity=".75"/>
+  <polygon points="${starPts(15.6, 11.6, 2.3, 1.05)}" fill="url(#rhGold)"/>
+  <polygon points="${starPts(47.2, 11.6, 2.3, 1.05)}" fill="url(#rhGold)"/>
+  <rect x="8.4" y="51.8" width="46" height="3.2" rx="1" fill="url(#rhGoldV)"/>
+  <rect x="6.6" y="54.8" width="49.6" height="3.4" rx="1.2" fill="url(#rhLapis)"/>
+  <rect x="6.6" y="54.8" width="49.6" height="1" rx=".5" fill="#fff" opacity=".25"/>
+</symbol></svg>`;
+const MARK = '<svg class="mk" viewBox="0 0 64 64" aria-hidden="true"><use href="#rh-mark"/></svg>';
+const WORD = () => `<span class="w3d">${LANG === 'tj' ? 'Роҳнамо' : 'Роҳнамо'}</span>`;
+
+function patURL(){
+  const s = '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"><g fill="none" stroke="#ffffff" stroke-opacity=".2" stroke-width="1.2"><rect x="13" y="13" width="18" height="18"/><rect x="13" y="13" width="18" height="18" transform="rotate(45 22 22)"/><circle cx="22" cy="22" r="3"/><path d="M0 0L6 6M44 0L38 6M0 44L6 38M44 44L38 38"/></g></svg>';
+  return "url('data:image/svg+xml," + encodeURIComponent(s) + "')";
+}
+document.documentElement.style.setProperty('--pat', patURL());
+
+let sealN = 0;
+function seal(){
+  const id = 'sp' + (++sealN);
+  return `<svg class="seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="${id}" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><circle cx="60" cy="60" r="57" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="60" cy="60" r="51" fill="none" stroke="currentColor" stroke-width=".8"/><circle cx="60" cy="60" r="35" fill="none" stroke="currentColor" stroke-width="1.2"/><text font-size="8.4" font-weight="700" letter-spacing="1.1" fill="currentColor" font-family="Golos Text, sans-serif"><textPath href="#${id}">${DT('seal')}</textPath></text><g transform="translate(60 60)" fill="currentColor"><polygon points="${starPts(0, 0, 21, 10)}"/><circle r="6" fill="#fbfaf6"/><circle r="3"/></g></svg>`;
+}
+
+/* ================= content ================= */
+const T = (title, html) => ({t:'text', title, html});
+const Q = (title, qs) => ({t:'quiz', title, qs});
+const one = (q, o, a) => ({type:'one', q, o, a});
+const many = (q, o, a) => ({type:'many', q, o, a});
+const txt = (q, a) => ({type:'text', q, a});
+const CAT_IDS = ['all','it','data','media','biz','lang'];
+
+const COURSES = [
+{id:'python', title:'Python с нуля', cat:'it', level:'b', hours:24, kind:'cert', h:214, glyph:'Py',
+ desc:'Первый язык программирования: переменные, условия, циклы, списки и функции. Короткие уроки и задачи с мгновенной проверкой.',
+ skills:['Писать и запускать программы на Python','Работать с переменными и типами данных','Строить условия и циклы','Использовать списки и писать свои функции'],
+ modules:[
+  {title:'Первые шаги', steps:[
+   T('Что такое Python', `<p>Python — язык программирования с простым синтаксисом. На нём пишут сайты, автоматизируют рутину, анализируют данные и обучают нейросети.</p><p>Программа — это последовательность команд. Первая команда, которую пишет каждый программист, — вывод текста на экран:</p><pre><code>print("Салом, ҷаҳон!")</code></pre><p>Функция <code>print</code> печатает то, что передано ей в скобках. Текст (строку) берут в кавычки.</p>`),
+   T('Переменные и типы', `<p>Переменная — имя, за которым хранится значение. Знак <code>=</code> означает «присвоить».</p><pre><code>name = "Дилноза"
+age = 21
+print(name, "—", age, "лет")</code></pre><p>Python сам определяет тип: <code>21</code> — целое число (<code>int</code>), <code>"Дилноза"</code> — строка (<code>str</code>), <code>3.5</code> — дробное число (<code>float</code>).</p><div class="note">Арифметика работает по школьным правилам: сначала умножение и деление, потом сложение и вычитание.</div>`),
+   Q('Проверка: первые шаги', [
+    one('Что выведет <code>print(2 + 3 * 2)</code>?', ['10','8','7','2 + 3 * 2'], 1),
+    txt('Как называется функция, которая выводит текст на экран? Напишите только имя.', ['print'])])]},
+  {title:'Условия и циклы', steps:[
+   T('Условия if / elif / else', `<p>Условие позволяет программе выбирать путь.</p><pre><code>score = 78
+if score >= 90:
+    print("Отлично")
+elif score >= 70:
+    print("Хорошо")
+else:
+    print("Нужно повторить")</code></pre><p>Обратите внимание на двоеточие и отступ в 4 пробела. В Python отступы — часть синтаксиса: они показывают, какие строки относятся к блоку.</p>`),
+   T('Цикл for', `<p>Цикл повторяет действие. <code>range(n)</code> выдаёт числа от 0 до n−1.</p><pre><code>for i in range(3):
+    print("Шаг", i)
+# Шаг 0, Шаг 1, Шаг 2</code></pre><p>Цикл <code>while</code> повторяется, пока условие истинно. Следите, чтобы условие когда-нибудь стало ложным, иначе цикл не остановится.</p>`),
+   Q('Проверка: условия и циклы', [
+    one('Какое ключевое слово означает «иначе, если»?', ['else if','elif','elseif','otherwise'], 1),
+    txt('Сколько раз выполнится тело цикла <code>for i in range(5)</code>? Ответ числом.', ['5'])])]},
+  {title:'Списки и функции', steps:[
+   T('Списки', `<p>Список хранит несколько значений по порядку. Нумерация начинается с нуля, а отрицательный индекс считает с конца.</p><pre><code>cities = ["Душанбе", "Худжанд", "Хорог"]
+print(cities[0])    # Душанбе
+print(cities[-1])   # Хорог
+cities.append("Бохтар")
+print(len(cities))  # 4</code></pre><p>Списки и словари изменяемы, а строки и кортежи — нет.</p>`),
+   T('Функции', `<p>Функция — именованный кусок кода, который можно вызывать много раз.</p><pre><code>def greet(name):
+    return "Салом, " + name + "!"
+
+print(greet("Фарход"))</code></pre><p><code>def</code> объявляет функцию, <code>return</code> возвращает результат. Хорошая функция делает одно дело и называется глаголом.</p>`),
+   Q('Проверка: списки и функции', [
+    txt('Чему равно <code>len([3, 1, 4])</code>?', ['3']),
+    many('Какие типы данных изменяемые? Выберите все верные.', ['list','tuple','dict','str'], [0,2])])]}
+ ],
+ exam:[
+  one('Какой тип у значения <code>3.0</code>?', ['int','float','str','bool'], 1),
+  txt('Что выведет <code>print("ab" * 2)</code>?', ['abab']),
+  one('Чему равно <code>[10, 20, 30][-1]</code>?', ['10','20','30','Ошибка'], 2),
+  one('Каким символом начинается комментарий в Python?', ['//','#','--','/*'], 1),
+  one('Что делает <code>return</code>?', ['Печатает значение','Возвращает результат из функции','Завершает программу','Повторяет цикл'], 1)]},
+
+{id:'web', title:'Веб-разработка: HTML, CSS, JavaScript', cat:'it', level:'b', hours:72, kind:'udost', h:12, glyph:'</>',
+ desc:'Программа повышения квалификации: свёрстаете адаптивную страницу и оживите её на JavaScript.',
+ skills:['Верстать семантичную HTML-разметку','Оформлять страницы на CSS, Flexbox и Grid','Писать скрипты на JavaScript','Работать с DOM и событиями'],
+ modules:[
+  {title:'HTML: структура страницы', steps:[
+   T('Теги и документ', `<p>HTML описывает, <em>что</em> находится на странице: заголовки, абзацы, ссылки, изображения. Каждый элемент — это тег.</p><pre><code>&lt;!doctype html&gt;
+&lt;html lang="ru"&gt;
+  &lt;head&gt;&lt;title&gt;Моя страница&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Салом!&lt;/h1&gt;
+    &lt;p&gt;Это абзац.&lt;/p&gt;
+    &lt;a href="https://example.com"&gt;Ссылка&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre><p>Заголовки идут от <code>h1</code> (главный) до <code>h6</code>. На странице должен быть один <code>h1</code>.</p>`),
+   T('Семантика', `<p>Семантические теги сообщают браузеру и поисковикам смысл блока: <code>header</code> — шапка, <code>nav</code> — навигация, <code>main</code> — основное содержимое, <code>article</code> — самостоятельная статья, <code>footer</code> — подвал.</p><p><code>div</code> и <code>span</code> смысла не несут, это просто контейнеры для оформления. Семантика улучшает доступность: программы чтения экрана понимают структуру страницы.</p>`),
+   Q('Проверка: HTML', [
+    one('Какой тег задаёт самый главный заголовок?', ['&lt;head&gt;','&lt;h6&gt;','&lt;h1&gt;','&lt;title&gt;'], 2),
+    many('Какие теги семантические?', ['header','div','nav','span','article'], [0,2,4])])]},
+  {title:'CSS: оформление и раскладка', steps:[
+   T('Селекторы и блочная модель', `<p>CSS отвечает за внешний вид. Правило состоит из селектора и объявлений:</p><pre><code>.card {
+  color: #1b2a4a;
+  padding: 16px;
+  border: 1px solid #ccd;
+  margin: 8px;
+}</code></pre><p>Блочная модель изнутри наружу: <b>content → padding → border → margin</b>. Свойство <code>box-sizing: border-box</code> включает padding и border в заданную ширину.</p>`),
+   T('Flexbox и Grid', `<p>Flexbox раскладывает элементы в одну линию:</p><pre><code>.row {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre><p>Grid — двумерная сетка: <code>display: grid; grid-template-columns: repeat(3, 1fr);</code>. Flexbox удобен для строк и панелей, Grid — для раскладки страницы и сеток карточек.</p>`),
+   Q('Проверка: CSS', [
+    one('Какое объявление превращает элемент во flex-контейнер?', ['flex: 1','display: flex','position: flex','align: flex'], 1),
+    one('Порядок слоёв блочной модели изнутри наружу:', ['margin → border → padding → content','content → border → padding → margin','content → padding → border → margin','padding → content → margin → border'], 2)])]},
+  {title:'JavaScript и DOM', steps:[
+   T('Переменные и функции', `<pre><code>const rate = 11;      // пример курса, переприсвоить нельзя
+let total = 0;        // можно менять
+function toSomoni(usd) {
+  return usd * rate;
+}
+total = toSomoni(5);</code></pre><p>Используйте <code>const</code> по умолчанию и <code>let</code> только для значений, которые меняются. Сравнивайте через <code>===</code>: оно проверяет и значение, и тип.</p>`),
+   T('DOM и события', `<p>Через DOM JavaScript находит элементы страницы и меняет их.</p><pre><code>const btn = document.querySelector("#buy");
+btn.addEventListener("click", () =&gt; {
+  btn.textContent = "Добавлено!";
+});</code></pre><p><code>querySelector</code> принимает CSS-селектор и возвращает первый подходящий элемент.</p>`),
+   Q('Проверка: JavaScript', [
+    one('Что произойдёт при <code>const a = 1; a = 2;</code>?', ['a станет 2','Ошибка TypeError','a останется 1 без ошибки','a станет "2"'], 1),
+    txt('Какой метод находит первый элемент по CSS-селектору? Только имя метода.', ['querySelector','document.querySelector'])])]}
+ ],
+ exam:[
+  one('Какое CSS-свойство меняет цвет текста?', ['font-color','text-color','color','background'], 2),
+  one('Какой атрибут задаёт адрес ссылки?', ['src','href','link','url'], 1),
+  one('Что вернёт <code>typeof []</code>?', ['"array"','"object"','"list"','"undefined"'], 1),
+  one('Чем <code>===</code> отличается от <code>==</code>?', ['Ничем','Сравнивает без приведения типов','Сравнивает только числа','Присваивает значение'], 1),
+  many('Что из этого — значения свойства <code>display</code>?', ['flex','grid','center','block'], [0,1,3])]},
+
+{id:'sql', title:'SQL и базы данных', cat:'data', level:'b', hours:20, kind:'cert', h:190, glyph:'SQL',
+ desc:'Научитесь доставать нужные данные из таблиц: фильтры, группировки, соединения.',
+ skills:['Писать запросы SELECT с фильтрами','Группировать и агрегировать данные','Соединять таблицы через JOIN','Понимать устройство реляционных баз'],
+ modules:[
+  {title:'Таблицы и SELECT', steps:[
+   T('Как устроена база', `<p>Реляционная база хранит данные в таблицах: строки — записи, столбцы — поля. У каждой таблицы есть <b>первичный ключ</b> — столбец с уникальным значением для каждой строки.</p><pre><code>SELECT name, city
+FROM students
+WHERE city = 'Душанбе';</code></pre><p><code>SELECT</code> выбирает столбцы, <code>FROM</code> указывает таблицу, <code>WHERE</code> фильтрует строки. <code>SELECT *</code> выбирает все столбцы.</p>`),
+   Q('Проверка: SELECT', [
+    txt('Какая команда выбирает данные из таблицы?', ['select']),
+    one('Первичный ключ — это…', ['Пароль от базы','Столбец с уникальным значением для каждой строки','Самый первый столбец таблицы','Индекс для сортировки по алфавиту'], 1)])]},
+  {title:'Сортировка и группировка', steps:[
+   T('GROUP BY и агрегаты', `<pre><code>SELECT city, COUNT(*) AS students, AVG(score) AS avg_score
+FROM students
+GROUP BY city
+HAVING COUNT(*) &gt; 10
+ORDER BY avg_score DESC;</code></pre><p>Агрегатные функции: <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>. <code>WHERE</code> фильтрует строки до группировки, <code>HAVING</code> — группы после неё. <code>DESC</code> — сортировка по убыванию.</p>`),
+   Q('Проверка: группировка', [
+    txt('Какая функция считает количество строк?', ['count','count(*)']),
+    one('Чем отфильтровать группы после GROUP BY?', ['WHERE','HAVING','FILTER','ORDER BY'], 1)])]},
+  {title:'Соединения таблиц', steps:[
+   T('JOIN', `<pre><code>SELECT s.name, c.title
+FROM students s
+JOIN enrollments e ON e.student_id = s.id
+JOIN courses c ON c.id = e.course_id;</code></pre><ul><li><b>INNER JOIN</b> — только строки, у которых есть пара в обеих таблицах.</li><li><b>LEFT JOIN</b> — все строки левой таблицы; где пары нет, справа будет NULL.</li></ul>`),
+   Q('Проверка: JOIN', [
+    one('Что возвращает INNER JOIN?', ['Все строки обеих таблиц','Только строки с совпадением в обеих таблицах','Все строки левой таблицы','Только несовпавшие строки'], 1),
+    one('Какой JOIN сохраняет все строки левой таблицы?', ['INNER JOIN','RIGHT JOIN','LEFT JOIN','CROSS JOIN'], 2)])]}
+ ],
+ exam:[
+  one('Как убрать повторы в результате?', ['UNIQUE','DISTINCT','DIFFERENT','SINGLE'], 1),
+  one('Как проверить, что значение пустое?', ['= NULL','IS NULL','== NULL','EMPTY()'], 1),
+  one('Какая команда добавляет строку?', ['ADD','INSERT','APPEND','PUT'], 1),
+  one('Сортировка по убыванию:', ['ORDER BY x DESC','SORT x DOWN','ORDER x REVERSE','GROUP BY x DESC'], 0)]},
+
+{id:'excel', title:'Excel для работы', cat:'data', level:'b', hours:16, kind:'cert', h:145, glyph:'fx',
+ desc:'Формулы, ссылки, ЕСЛИ, ВПР, сводные таблицы и диаграммы — всё, что нужно в офисе.',
+ skills:['Писать формулы с абсолютными ссылками','Использовать СУММ, ЕСЛИ, СЧЁТЕСЛИ, ВПР','Строить сводные таблицы','Выбирать подходящую диаграмму'],
+ modules:[
+  {title:'Формулы и ссылки', steps:[
+   T('Ячейки и ссылки', `<p>Формула всегда начинается со знака <code>=</code>. Ссылка <code>A1</code> — относительная: при копировании вниз она станет <code>A2</code>.</p><p>Знак доллара закрепляет адрес: <code>$A$1</code> — абсолютная ссылка, не меняется при копировании; <code>A$1</code> закрепляет только строку, <code>$A1</code> — только столбец. Клавиша <kbd>F4</kbd> переключает варианты.</p><pre><code>=B2*$E$1   ← цена × курс из одной ячейки</code></pre>`),
+   Q('Проверка: ссылки', [
+    one('С какого символа начинается формула?', ['#','=','@','+'], 1),
+    one('Какая ссылка не меняется при копировании?', ['A1','A$1','$A1','$A$1'], 3)])]},
+  {title:'Главные функции', steps:[
+   T('СУММ, ЕСЛИ, СЧЁТЕСЛИ, ВПР', `<ul><li><code>=СУММ(B2:B10)</code> — сумма диапазона.</li><li><code>=ЕСЛИ(C2&gt;=70;"Сдал";"Не сдал")</code> — условие.</li><li><code>=СЧЁТЕСЛИ(D:D;"Душанбе")</code> — сколько раз встречается значение.</li><li><code>=ВПР(A2;Прайс!A:C;3;ЛОЖЬ)</code> — ищет значение в <b>первом</b> столбце таблицы и возвращает значение из указанного столбца.</li></ul><p>В новых версиях вместо ВПР удобнее <code>ПРОСМОТРX</code>: она ищет в любом столбце.</p>`),
+   Q('Проверка: функции', [
+    one('Что вернёт <code>=ЕСЛИ(A1&gt;10;"да";"нет")</code>, если A1 = 7?', ['да','нет','7','ошибку'], 1),
+    one('В каком столбце таблицы ВПР ищет значение?', ['В последнем','В первом','В любом','В указанном номером'], 1)])]},
+  {title:'Сводные таблицы и диаграммы', steps:[
+   T('Отчёт за минуту', `<p>Сводная таблица превращает тысячи строк в отчёт: перетащите поле «Регион» в строки, «Сумма продаж» — в значения, «Месяц» — в столбцы.</p><p>Диаграмму выбирают по задаче: <b>линейчатая</b> — сравнить категории, <b>график</b> — динамика во времени, <b>круговая</b> — доли целого (не больше 5–6 долей).</p>`),
+   Q('Проверка: отчёты', [
+    one('Для чего нужна сводная таблица?', ['Для защиты листа паролем','Для быстрого обобщения и группировки данных','Для проверки орфографии','Для печати'], 1),
+    one('Какая диаграмма показывает доли целого?', ['График','Круговая','Точечная','Гистограмма'], 1)])]}
+ ],
+ exam:[
+  txt('Чему равно <code>=СУММ(A1:A3)</code>, если в ячейках 2, 3 и 5?', ['10']),
+  one('Что считает СЧЁТЕСЛИ?', ['Сумму по условию','Количество ячеек, отвечающих условию','Среднее значение','Количество пустых ячеек'], 1),
+  one('Что закрепляет ссылка <code>A$1</code>?', ['Столбец','Строку','И строку, и столбец','Ничего'], 1),
+  one('Какая клавиша переключает тип ссылки?', ['F2','F4','F9','Ctrl+Z'], 1)]},
+
+{id:'analytics', title:'Анализ данных', cat:'data', level:'m', hours:72, kind:'udost', h:262, glyph:'x̄',
+ desc:'Программа повышения квалификации: статистика, pandas, визуализация и проверка гипотез.',
+ skills:['Считать и интерпретировать описательную статистику','Чистить данные в pandas','Строить графики и делать выводы','Отличать корреляцию от причинности'],
+ modules:[
+  {title:'Описательная статистика', steps:[
+   T('Среднее, медиана, мода', `<p>Первое, что делает аналитик, — описывает данные.</p><ul><li><b>Среднее</b> — сумма, делённая на количество.</li><li><b>Медиана</b> — середина упорядоченного ряда, устойчива к выбросам.</li><li><b>Мода</b> — самое частое значение.</li><li><b>Стандартное отклонение</b> — насколько значения разбросаны вокруг среднего.</li></ul><p>Пример: зарплаты 3, 4, 4, 5 и 50 тыс. сомони. Среднее — 13,2, медиана — 4. Медиана честнее описывает «типичного» сотрудника.</p>`),
+   Q('Проверка: статистика', [
+    txt('Медиана ряда 1, 3, 9?', ['3']),
+    one('Какая мера устойчива к выбросам?', ['Среднее','Медиана','Максимум','Сумма'], 1)])]},
+  {title:'Очистка данных в pandas', steps:[
+   T('Первый осмотр таблицы', `<pre><code>import pandas as pd
+df = pd.read_csv("sales.csv")
+df.head()                 # первые 5 строк
+df.isna().sum()           # пропуски по столбцам
+df = df.drop_duplicates()
+df.groupby("region")["revenue"].sum()</code></pre><p>Большая часть времени аналитика уходит на подготовку: пропуски, дубли, неверные типы, разные написания («Душанбе», «г. Душанбе»).</p>`),
+   Q('Проверка: pandas', [
+    one('Что показывает <code>df.head()</code>?', ['Названия столбцов','Первые 5 строк','Последние 5 строк','Статистику'], 1),
+    one('Какой метод находит пропуски?', ['isna()','dropna()','fillna()','unique()'], 0)])]},
+  {title:'Визуализация и выводы', steps:[
+   T('Корреляция и эксперимент', `<p>Корреляция показывает силу связи от −1 до 1. Значение −0,9 — сильная обратная связь: одна величина растёт, другая падает.</p><div class="note">Корреляция не доказывает причинность. Продажи мороженого и число солнечных ожогов растут вместе, но причина у обоих — жара.</div><p>Причинность проверяют экспериментом, например A/B-тестом: аудиторию случайно делят на группы и сравнивают результат.</p>`),
+   Q('Проверка: выводы', [
+    one('Корреляция −0,9 означает…', ['Связи нет','Сильную обратную связь','Слабую прямую связь','Ошибку в данных'], 1),
+    one('Какой график лучше для динамики по месяцам?', ['Круговая диаграмма','Линейный график','Карта','Облако слов'], 1)])]}
+ ],
+ exam:[
+  txt('Среднее чисел 2, 4, 6, 8?', ['5']),
+  one('Что измеряет стандартное отклонение?', ['Центр данных','Разброс данных','Количество строк','Связь двух величин'], 1),
+  one('Какой метод pandas группирует данные?', ['group()','groupby()','pivot_by()','cluster()'], 1),
+  one('Как проверить, что новая кнопка увеличивает продажи?', ['Посмотреть корреляцию','Провести A/B-тест','Спросить коллег','Построить круговую диаграмму'], 1)]},
+
+{id:'montage', title:'Видеомонтаж в DaVinci Resolve', cat:'media', level:'b', hours:24, kind:'cert', h:350, glyph:'▶',
+ desc:'От импорта до экспорта: интерфейс Resolve, виды склеек, ритм и настройки вывода для соцсетей и ТВ.',
+ skills:['Ориентироваться в страницах Resolve','Монтировать J- и L-склейками','Работать с прокси для тяжёлого материала','Экспортировать под интернет и ТВ'],
+ modules:[
+  {title:'Интерфейс', steps:[
+   T('Страницы Resolve', `<p>Resolve разделён на страницы-этапы, они переключаются внизу экрана:</p><ul><li><b>Media</b> — импорт и организация материала;</li><li><b>Cut</b> и <b>Edit</b> — монтаж;</li><li><b>Fusion</b> — композитинг и графика;</li><li><b>Color</b> — цветокоррекция;</li><li><b>Fairlight</b> — звук;</li><li><b>Deliver</b> — экспорт.</li></ul><p>Для тяжёлого материала (4K, RAW) создавайте прокси — лёгкие копии для монтажа, которые при экспорте заменяются оригиналами.</p>`),
+   Q('Проверка: интерфейс', [
+    one('На какой странице выполняется экспорт?', ['Media','Fusion','Deliver','Color'], 2),
+    one('Где работают со звуком?', ['Fairlight','Fusion','Cut','Media'], 0)])]},
+  {title:'Склейки', steps:[
+   T('Виды склеек', `<ul><li><b>Простая склейка</b> — мгновенная смена кадра.</li><li><b>J-cut</b> — звук следующего плана начинается раньше изображения.</li><li><b>L-cut</b> — звук текущего плана продолжается на следующем изображении.</li><li><b>Jump cut</b> — скачок внутри одного плана, популярен в блогах.</li><li><b>Монтаж по движению</b> — склейка в середине жеста скрывает переход.</li></ul><p>Горячие клавиши: <kbd>B</kbd> — лезвие, <kbd>A</kbd> — выделение, <kbd>Ctrl/Cmd+B</kbd> — разрезать под плейхедом.</p>`),
+   Q('Проверка: склейки', [
+    one('L-cut — это когда…', ['Звук следующего плана начинается раньше','Звук текущего плана продолжается на следующем кадре','Кадры склеены без звука','Применён переход-растворение'], 1),
+    txt('Какая клавиша включает инструмент «лезвие» (Blade)?', ['b'])])]},
+  {title:'Ритм и экспорт', steps:[
+   T('Частота кадров и кодеки', `<p>Ритм задают длительность планов и музыка. Для динамичного ролика держите планы по 1–3 секунды и режьте в долю.</p><p>Частота кадров: в странах СНГ и Европы стандарт телевидения — 25 к/с, в США — 29,97. Для интернета экспортируйте в H.264 или H.265 (HEVC): они дают малый размер при хорошем качестве.</p><div class="note">Монтируйте с частотой кадров исходника. Смена частоты при экспорте даёт рывки.</div>`),
+   Q('Проверка: экспорт', [
+    txt('Какова стандартная частота кадров ТВ в СНГ и Европе? Числом.', ['25']),
+    many('Какие кодеки подходят для публикации в интернете?', ['H.264','H.265','ProRes 4444','DNxHR HQX'], [0,1])])]}
+ ],
+ exam:[
+  one('Что такое B-roll?', ['Основная съёмка интервью','Перебивки и дополнительные планы','Второй дубль','Чёрно-белая версия'], 1),
+  one('Зачем нужны прокси?', ['Для цветокоррекции','Для лёгкого монтажа тяжёлого материала','Для титров','Для записи звука'], 1),
+  one('Правило 180 градусов помогает…', ['Сохранить ориентацию героев в пространстве','Выставить экспозицию','Выбрать объектив','Синхронизировать звук'], 0),
+  one('J-cut — это…', ['Звук следующего плана начинается раньше изображения','Звук продолжается после склейки','Скачок внутри плана','Затемнение'], 0)]},
+
+{id:'color', title:'Цветокоррекция: от коррекции к грейдингу', cat:'media', level:'m', hours:72, kind:'udost', h:28, glyph:'◐',
+ desc:'Программа повышения квалификации: скопы, первичная коррекция, ноды, Log и LUT в DaVinci Resolve.',
+ skills:['Читать Waveform, Parade и Vectorscope','Выставлять баланс белого и экспозицию','Строить дерево нод','Переводить Log в Rec.709 и делать лук'],
+ modules:[
+  {title:'Коррекция и скопы', steps:[
+   T('Коррекция и грейдинг', `<p><b>Цветокоррекция</b> делает изображение технически правильным: экспозиция, баланс белого, контраст, совпадение планов. <b>Грейдинг</b> — художественный лук, который задаёт настроение.</p><p>Порядок всегда такой: сначала коррекция, потом грейдинг. Глазам не верьте — смотрите на скопы:</p><ul><li><b>Waveform</b> — яркость по ширине кадра;</li><li><b>Parade</b> — каналы R, G, B отдельно, удобно для баланса белого;</li><li><b>Vectorscope</b> — оттенок и насыщенность.</li></ul>`),
+   Q('Проверка: скопы', [
+    one('Какой скоп показывает оттенок и насыщенность?', ['Waveform','Parade','Vectorscope','Гистограмма'], 2),
+    one('Что делается первым?', ['Грейдинг','Коррекция','Наложение LUT','Виньетка'], 1)])]},
+  {title:'Первичная коррекция', steps:[
+   T('Lift, Gamma, Gain', `<p>Колёса <b>Lift</b>, <b>Gamma</b>, <b>Gain</b> управляют тенями, средними тонами и светами. <b>Offset</b> сдвигает всё изображение целиком.</p><p>Баланс белого: найдите в кадре нейтральный объект и сведите каналы R, G, B на Parade к одному уровню.</p><div class="note">На вектороскопе есть линия телесных тонов (skin tone line). Кожа людей любого цвета ложится около неё, меняются только насыщенность и яркость.</div>`),
+   Q('Проверка: первичка', [
+    one('Какое колесо в первую очередь влияет на света?', ['Lift','Gamma','Gain','Offset'], 2),
+    one('Как проверить телесные тона?', ['По линии skin tone на вектороскопе','По гистограмме','По аудиометру','По таймлайну'], 0)])]},
+  {title:'Ноды, Log и LUT', steps:[
+   T('Дерево нод', `<p>В Resolve каждая операция — отдельная нода. Типичная цепочка: <b>конвертация → экспозиция → баланс → контраст → вторичная коррекция → лук</b>.</p><p>Log-материал выглядит плоским и бледным: так камера сохраняет максимум динамического диапазона. Его переводят в Rec.709 через Color Space Transform или технический LUT.</p><p><b>LUT</b> — таблица соответствия: для каждого входного цвета указан выходной. Творческий LUT ставят после коррекции.</p>`),
+   Q('Проверка: Log и LUT', [
+    one('Почему Log-материал выглядит плоским?', ['Камера неисправна','Так сохраняется максимальный динамический диапазон','Это ошибка экспорта','Выключен стабилизатор'], 1),
+    one('Что такое LUT?', ['Таблица преобразования цветов','Тип кодека','Формат звука','Скоп'], 0)])]}
+ ],
+ exam:[
+  one('Стандарт цветового пространства для HD-видео:', ['Rec.709','Rec.2020','DCI-P3','Adobe RGB'], 0),
+  one('Как выделить только небо для отдельной коррекции?', ['HSL-квалификатор или маска','Колесо Lift','Экспорт','Прокси'], 0),
+  one('Что такое Parade?', ['Каналы R, G, B отдельно','Список нод','Окно экспорта','Режим проигрывания'], 0),
+  one('Где ставят творческий LUT?', ['До конвертации Log','После первичной коррекции','Вместо баланса белого','На странице Media'], 1),
+  one('False Color помогает…', ['Оценить экспозицию по зонам яркости','Сменить формат кадра','Добавить зерно','Синхронизировать звук'], 0)]},
+
+{id:'figma', title:'UI-дизайн в Figma', cat:'media', level:'b', hours:20, kind:'cert', h:300, glyph:'Fg',
+ desc:'Фреймы, Auto Layout, компоненты, сетка и прототипы — соберёте свой первый экран приложения.',
+ skills:['Собирать макеты на фреймах и Auto Layout','Создавать компоненты и варианты','Соблюдать сетку и контраст','Делать кликабельные прототипы'],
+ modules:[
+  {title:'Фреймы и Auto Layout', steps:[
+   T('Основа макета', `<p>Фрейм — основной контейнер в Figma: экран приложения, карточка, кнопка. В отличие от группы, у фрейма есть свои размеры, заливка, обрезка содержимого и сетки.</p><p><b>Auto Layout</b> (<kbd>Shift+A</kbd>) раскладывает элементы с заданными отступами. Добавили текст в кнопку — кнопка растянулась сама.</p>`),
+   Q('Проверка: фреймы', [
+    one('Зачем нужен Auto Layout?', ['Для экспорта PNG','Для автоматической раскладки с отступами','Для анимации','Для выбора цвета'], 1),
+    txt('Горячая клавиша Auto Layout: Shift + …? Одна буква.', ['a'])])]},
+  {title:'Компоненты', steps:[
+   T('Компоненты и варианты', `<p>Компонент — переиспользуемый элемент. Изменения главного компонента автоматически применяются ко всем экземплярам.</p><p><b>Варианты</b> собирают состояния одного элемента в набор: кнопка Primary / Secondary, Default / Hover / Disabled. Свойства компонента позволяют менять текст и иконку без отвязки экземпляра.</p>`),
+   Q('Проверка: компоненты', [
+    one('Что происходит с экземплярами при изменении главного компонента?', ['Ничего','Они обновляются','Они удаляются','Они отвязываются'], 1),
+    one('Варианты удобны для…', ['Состояний одного элемента','Экспорта','Комментариев','Импорта шрифтов'], 0)])]},
+  {title:'Сетка и прототип', steps:[
+   T('Сетка, типографика, прототип', `<p>Отступы и размеры удобно делать кратными 8: 8, 16, 24, 32. Так интерфейс выглядит собранным.</p><p>Контраст обычного текста по стандарту WCAG AA — не менее 4,5:1. Шкалу размеров шрифта задайте заранее, например 14 / 16 / 20 / 28 / 40.</p><p>В режиме Prototype свяжите экраны и задайте переходы, чтобы показать клиенту живой сценарий.</p>`),
+   Q('Проверка: сетка', [
+    txt('Минимальный контраст обычного текста по WCAG AA: 4,5 к …? Числом.', ['1']),
+    one('Шаг популярной системы отступов:', ['5 px','7 px','8 px','10 px'], 2)])]}
+ ],
+ exam:[
+  one('Чем фрейм отличается от группы?', ['Ничем','У фрейма свои размеры, заливка и обрезка','Группа поддерживает Auto Layout','Фрейм нельзя экспортировать'], 1),
+  one('Где задают переходы между экранами?', ['Design','Prototype','Dev Mode','Assets'], 1),
+  one('Какой отступ соответствует 8-пиксельной сетке?', ['15','24','30','13'], 1),
+  one('Как изменить текст в экземпляре, не отвязывая его?', ['Через свойства компонента','Только отвязав','Только в главном компоненте','Никак'], 0)]},
+
+{id:'smm', title:'SMM и digital-маркетинг', cat:'biz', level:'b', hours:24, kind:'cert', h:330, glyph:'@',
+ desc:'Портрет клиента, контент-план, короткие видео и метрики, по которым видно, что реклама окупается.',
+ skills:['Описывать целевую аудиторию','Составлять контент-план','Делать цепляющие короткие видео','Считать ER, CTR и CPA'],
+ modules:[
+  {title:'Аудитория', steps:[
+   T('Портрет клиента', `<p>Маркетинг начинается с вопроса «для кого». Опишите портрет: возраст, город, задачи, возражения и где человек проводит время.</p><p>Пример: «Мадина, 27 лет, Душанбе, работает в банке, хочет сменить профессию, по вечерам сидит в Instagram и Telegram, боится, что не хватит времени на учёбу».</p><p>Путь клиента (CJM): узнал → заинтересовался → сравнил → купил → рекомендует. На каждом этапе нужен свой контент.</p>`),
+   Q('Проверка: аудитория', [
+    one('С чего начинается маркетинговая стратегия?', ['С выбора логотипа','С описания целевой аудитории','С покупки рекламы','С выбора хештегов'], 1),
+    one('CJM — это…', ['Путь клиента','Таблица цен','Рекламный кабинет','Формат видео'], 0)])]},
+  {title:'Контент', steps:[
+   T('Контент-план и форматы', `<p>Смешивайте типы контента: полезный, вовлекающий, имиджевый, продающий. Больше пользы, меньше прямых продаж.</p><p>В коротком видео первые 1–3 секунды решают всё: начинайте с вопроса, результата или неожиданного кадра. Субтитры обязательны — многие смотрят без звука.</p>`),
+   Q('Проверка: контент', [
+    one('Что важнее всего в коротком вертикальном видео?', ['Длинное вступление с логотипом','Первые 1–3 секунды','Количество хештегов','Фильтр'], 1),
+    one('Зачем добавлять субтитры?', ['Многие смотрят без звука','Этого требует алгоритм','Чтобы увеличить длительность','Без них нельзя загрузить'], 0)])]},
+  {title:'Метрики', steps:[
+   T('ER, CTR, CPA', `<ul><li><b>Охват</b> — сколько уникальных людей увидели публикацию.</li><li><b>ER</b> (вовлечённость) = реакции ÷ охват × 100%.</li><li><b>CTR</b> = клики ÷ показы × 100%.</li><li><b>CPA</b> = расходы ÷ число целевых действий.</li></ul><p>Пример: потратили 1000 сомони, получили 40 заявок. CPA = 25 сомони за заявку.</p><p>UTM-метки в ссылках показывают, из какого источника пришёл клиент.</p>`),
+   Q('Проверка: метрики', [
+    txt('1000 показов, 30 кликов. Какой CTR в процентах? Числом.', ['3','3%']),
+    one('CPA — это…', ['Цена за целевое действие','Цена за 1000 показов','Охват','Число подписчиков'], 0)])]}
+ ],
+ exam:[
+  txt('Бюджет 2000 сомони, 50 заявок. CPA в сомони? Числом.', ['40']),
+  one('Зачем нужны UTM-метки?', ['Для отслеживания источников трафика','Для защиты аккаунта','Для оформления ссылок','Для хештегов'], 0),
+  one('ER показывает…', ['Вовлечённость аудитории','Количество публикаций','Скорость сайта','Стоимость клика'], 0),
+  one('Что такое A/B-тест креативов?', ['Сравнение двух вариантов на разных частях аудитории','Публикация двух постов подряд','Проверка орфографии','Смена аватарки'], 0)]},
+
+{id:'fin', title:'Финансовая грамотность', cat:'biz', level:'b', hours:12, kind:'cert', h:42, glyph:'%',
+ desc:'Личный бюджет, подушка безопасности, сложный процент и кредиты без ловушек — на примерах в сомони.',
+ skills:['Вести личный бюджет по правилу 50/30/20','Считать сложный процент','Учитывать инфляцию','Оценивать кредит по эффективной ставке'],
+ modules:[
+  {title:'Бюджет', steps:[
+   T('Личный бюджет', `<p>Бюджет — это план: сколько приходит и куда уходит. Записывайте расходы хотя бы месяц, и вы увидите, куда «утекают» деньги.</p><p>Правило <b>50/30/20</b>: 50% дохода — на обязательное (жильё, еда, транспорт), 30% — на желания, 20% — на сбережения и погашение долгов.</p><p>При доходе 5000 сомони это 2500 / 1500 / 1000.</p>`),
+   Q('Проверка: бюджет', [
+    txt('Доход 8000 сомони. Сколько отложить по правилу 50/30/20? Числом.', ['1600']),
+    one('Что входит в 50% «обязательного»?', ['Путешествия','Жильё и еда','Новый телефон','Подарки'], 1)])]},
+  {title:'Сбережения', steps:[
+   T('Инфляция и сложный процент', `<p>Инфляция — рост цен. Если цены выросли на 8% за год, а деньги лежали дома, их покупательная способность упала примерно на 8%.</p><p>Сложный процент — проценты начисляются и на проценты:</p><pre><code>1000 × 1,10 = 1100   (1-й год)
+1100 × 1,10 = 1210   (2-й год)</code></pre><p>Сначала соберите подушку безопасности на 3–6 месяцев расходов, потом инвестируйте.</p>`),
+   Q('Проверка: сбережения', [
+    txt('1000 сомони под 10% годовых со сложным процентом. Сколько будет через 2 года? Числом.', ['1210']),
+    one('Размер подушки безопасности:', ['1 неделя расходов','3–6 месяцев расходов','5 лет расходов','Не нужна'], 1)])]},
+  {title:'Кредиты', steps:[
+   T('Кредиты без ловушек', `<p>Смотрите не на ставку в рекламе, а на <b>эффективную ставку</b>: она учитывает комиссии и страховки.</p><p>Платежи по всем кредитам не должны превышать 30–40% дохода. Выше — риск попасть в долговую спираль.</p><div class="note">Не берите новый кредит, чтобы закрыть старый, без чёткого плана: это откладывает проблему и увеличивает переплату.</div>`),
+   Q('Проверка: кредиты', [
+    one('Что показывает полную стоимость кредита?', ['Рекламная ставка','Эффективная ставка','Срок','Сумма'], 1),
+    one('Безопасная доля платежей по кредитам от дохода:', ['До 30–40%','До 70%','До 90%','Любая'], 0)])]}
+ ],
+ exam:[
+  one('Инфляция — это…', ['Рост цен','Рост зарплат','Курс валют','Налог'], 0),
+  txt('По правилу 50/30/20 при доходе 6000 сомони на желания идёт… Числом.', ['1800']),
+  one('Что делать сначала?', ['Инвестировать всё','Собрать подушку безопасности','Взять кредит','Купить валюту'], 1),
+  one('Сложный процент — это…', ['Проценты на проценты','Двойная комиссия','Штраф за просрочку','Налог на вклад'], 0)]},
+
+{id:'tajik', title:'Таджикский язык для начинающих', cat:'lang', level:'b', hours:20, kind:'cert', h:160, glyph:'Ҷ',
+ desc:'Алфавит, приветствия, местоимения, числа и первые фразы для общения в Таджикистане.',
+ skills:['Читать шесть особых букв алфавита','Здороваться и благодарить','Строить простые предложения','Считать от 1 до 10'],
+ modules:[
+  {title:'Алфавит и приветствия', steps:[
+   T('Особые буквы и первые слова', `<p>Таджикский алфавит основан на кириллице. В нём есть шесть букв, которых нет в русском: <b>ғ, ӣ, қ, ӯ, ҳ, ҷ</b>.</p><table class="vocab"><tr><td>Салом</td><td>Здравствуйте</td></tr><tr><td>Хуш омадед</td><td>Добро пожаловать</td></tr><tr><td>Раҳмат</td><td>Спасибо</td></tr><tr><td>Хайр</td><td>До свидания</td></tr><tr><td>Чӣ хел шумо?</td><td>Как вы?</td></tr><tr><td>Нағз</td><td>Хорошо</td></tr></table>`),
+   Q('Проверка: приветствия', [
+    txt('Сколько в таджикском алфавите букв, которых нет в русском? Числом.', ['6']),
+    one('Что значит «Раҳмат»?', ['Привет','Спасибо','Пока','Пожалуйста'], 1)])]},
+  {title:'Местоимения', steps:[
+   T('Я, ты, мы', `<table class="vocab"><tr><td>ман</td><td>я</td></tr><tr><td>ту</td><td>ты</td></tr><tr><td>ӯ</td><td>он, она</td></tr><tr><td>мо</td><td>мы</td></tr><tr><td>шумо</td><td>вы; вежливое «Вы»</td></tr><tr><td>онҳо</td><td>они</td></tr></table><p>Глагол стоит в конце предложения: подлежащее — дополнение — сказуемое.</p><pre><code>Ман донишҷӯ ҳастам. — Я студент.
+Мо дар Душанбе зиндагӣ мекунем. — Мы живём в Душанбе.</code></pre>`),
+   Q('Проверка: местоимения', [
+    one('Как будет «мы»?', ['ман','мо','онҳо','шумо'], 1),
+    one('Где обычно стоит глагол в таджикском предложении?', ['В начале','В середине','В конце','Где угодно'], 2)])]},
+  {title:'Числа и слова каждого дня', steps:[
+   T('От одного до десяти', `<table class="vocab"><tr><td>як</td><td>1</td></tr><tr><td>ду</td><td>2</td></tr><tr><td>се</td><td>3</td></tr><tr><td>чор</td><td>4</td></tr><tr><td>панҷ</td><td>5</td></tr><tr><td>шаш</td><td>6</td></tr><tr><td>ҳафт</td><td>7</td></tr><tr><td>ҳашт</td><td>8</td></tr><tr><td>нӯҳ</td><td>9</td></tr><tr><td>даҳ</td><td>10</td></tr></table><p>Слова каждого дня: <b>об</b> — вода, <b>нон</b> — хлеб, <b>китоб</b> — книга, <b>хона</b> — дом.</p>`),
+   Q('Проверка: числа', [
+    one('«Панҷ» — это…', ['3','5','7','9'], 1),
+    txt('Напишите по-таджикски «три».', ['се'])])]}
+ ],
+ exam:[
+  one('«Хуш омадед» означает…', ['Спасибо','Добро пожаловать','До свидания','Как дела?'], 1),
+  one('«Китоб» — это…', ['Дом','Книга','Хлеб','Вода'], 1),
+  txt('Как по-таджикски «вода»?', ['об']),
+  one('Вежливое обращение «Вы»:', ['ту','шумо','ӯ','мо'], 1),
+  one('«Даҳ» — это число…', ['8','9','10','12'], 2)]},
+
+{id:'english', title:'English A1–A2', cat:'lang', level:'b', hours:24, kind:'cert', h:228, glyph:'Aa',
+ desc:'База английского: to be, Present Simple, Past Simple и неправильные глаголы — с упражнениями.',
+ skills:['Строить предложения с to be','Говорить о привычках в Present Simple','Рассказывать о прошлом в Past Simple','Знать частые неправильные глаголы'],
+ modules:[
+  {title:'Глагол to be', steps:[
+   T('Am, is, are', `<pre><code>I am a student.
+You are / We are / They are
+He is / She is / It is</code></pre><p>Отрицание: <i>I am not</i>, <i>she isn't</i>. В вопросе глагол выходит вперёд: <i>Are you from Dushanbe?</i> — <i>Yes, I am.</i></p>`),
+   Q('Проверка: to be', [
+    one('She ___ a teacher.', ['am','is','are','be'], 1),
+    one('Как правильно задать вопрос?', ['You are from Khujand?','Are you from Khujand?','Is you from Khujand?','Do you from Khujand?'], 1)])]},
+  {title:'Present Simple', steps:[
+   T('Привычки и факты', `<p>Present Simple описывает регулярные действия и факты. В 3-м лице единственного числа (he, she, it) к глаголу добавляется <b>-s</b>.</p><pre><code>I work in a bank.
+She works in a hospital.
+Do you like tea? — Yes, I do.
+He doesn't drive.</code></pre><p>Слова-маркеры: always, usually, often, every day.</p>`),
+   Q('Проверка: Present Simple', [
+    one('He ___ football every Sunday.', ['play','plays','playing','is play'], 1),
+    txt('Вставьте вспомогательный глагол: ___ she speak Tajik?', ['does'])])]},
+  {title:'Past Simple', steps:[
+   T('Прошедшее время', `<p>Past Simple — законченное действие в прошлом. Правильные глаголы получают <b>-ed</b>: work → worked. Неправильные нужно выучить:</p><table class="vocab"><tr><td>go</td><td>went</td></tr><tr><td>see</td><td>saw</td></tr><tr><td>buy</td><td>bought</td></tr><tr><td>have</td><td>had</td></tr><tr><td>make</td><td>made</td></tr></table><p>В вопросах и отрицаниях — <b>did</b> + начальная форма: <i>Did you go? I didn't go.</i></p>`),
+   Q('Проверка: Past Simple', [
+    txt('Вторая форма глагола go?', ['went']),
+    one('Выберите правильный вариант:', ["I didn't went","I didn't go","I not went","I don't went"], 1)])]}
+ ],
+ exam:[
+  one('They ___ students.', ['is','am','are','be'], 2),
+  one('My brother ___ in Dushanbe.', ['live','lives','living','is live'], 1),
+  txt('Вторая форма глагола buy?', ['bought']),
+  one('Yesterday I ___ to the market.', ['go','goes','went','going'], 2)]}
+];
+
+/* Tajik catalogue metadata */
+const TJC = {
+ python:{t:'Python аз сифр', d:'Аввалин забони барномасозӣ: тағйирёбандаҳо, шартҳо, давраҳо, рӯйхатҳо ва функсияҳо. Дарсҳои кӯтоҳ ва масъалаҳо бо санҷиши фаврӣ.',
+  s:['Навиштан ва иҷро кардани барномаҳо дар Python','Кор бо тағйирёбандаҳо ва навъҳои маълумот','Сохтани шартҳо ва давраҳо','Истифодаи рӯйхатҳо ва навиштани функсияҳои худ'], m:['Қадамҳои аввал','Шартҳо ва давраҳо','Рӯйхатҳо ва функсияҳо']},
+ web:{t:'Веб-барномасозӣ: HTML, CSS, JavaScript', d:'Барномаи такмили ихтисос: саҳифаи мутобиқшавандаро месозед ва онро бо JavaScript зинда мекунед.',
+  s:['Навиштани тамғагузории семантикии HTML','Ороиши саҳифаҳо бо CSS, Flexbox ва Grid','Навиштани скриптҳо дар JavaScript','Кор бо DOM ва ҳодисаҳо'], m:['HTML: сохтори саҳифа','CSS: ороиш ва ҷойгиркунӣ','JavaScript ва DOM']},
+ sql:{t:'SQL ва пойгоҳи маълумот', d:'Маълумоти лозимаро аз ҷадвалҳо бароред: филтрҳо, гурӯҳбандӣ, пайвастҳо.',
+  s:['Навиштани дархостҳои SELECT бо филтрҳо','Гурӯҳбандӣ ва ҷамъбасти маълумот','Пайваст кардани ҷадвалҳо бо JOIN','Фаҳмидани сохтори пойгоҳҳои релятсионӣ'], m:['Ҷадвалҳо ва SELECT','Мураттабсозӣ ва гурӯҳбандӣ','Пайвасти ҷадвалҳо']},
+ excel:{t:'Excel барои кор', d:'Формулаҳо, истинодҳо, ЕСЛИ, ВПР, ҷадвалҳои ҷамъбастӣ ва диаграммаҳо — ҳама чизе, ки дар идора лозим аст.',
+  s:['Навиштани формулаҳо бо истинодҳои мутлақ','Истифодаи СУММ, ЕСЛИ, СЧЁТЕСЛИ, ВПР','Сохтани ҷадвалҳои ҷамъбастӣ','Интихоби диаграммаи мувофиқ'], m:['Формулаҳо ва истинодҳо','Функсияҳои асосӣ','Ҷадвалҳои ҷамъбастӣ ва диаграммаҳо']},
+ analytics:{t:'Таҳлили маълумот', d:'Барномаи такмили ихтисос: омор, pandas, тасвирсозии маълумот ва санҷиши фарзияҳо.',
+  s:['Ҳисоб ва шарҳи омори тавсифӣ','Тоза кардани маълумот дар pandas','Сохтани графикҳо ва хулосабарорӣ','Фарқ кардани коррелятсия аз сабабият'], m:['Омори тавсифӣ','Тоза кардани маълумот дар pandas','Тасвирсозӣ ва хулосаҳо']},
+ montage:{t:'Монтажи видео дар DaVinci Resolve', d:'Аз воридот то содирот: интерфейси Resolve, навъҳои буриш, ритм ва танзимоти содирот барои шабакаҳои иҷтимоӣ ва ТВ.',
+  s:['Шинохтани саҳифаҳои Resolve','Монтаж бо буришҳои J ва L','Кор бо прокси барои маводи вазнин','Содирот барои интернет ва ТВ'], m:['Интерфейс','Буришҳо','Ритм ва содирот']},
+ color:{t:'Ислоҳи ранг: аз коррексия то грейдинг', d:'Барномаи такмили ихтисос: скопҳо, коррексияи аввалия, нодҳо, Log ва LUT дар DaVinci Resolve.',
+  s:['Хондани Waveform, Parade ва Vectorscope','Танзими тавозуни сафед ва экспозиция','Сохтани дарахти нодҳо','Табдили Log ба Rec.709 ва сохтани лук'], m:['Коррексия ва скопҳо','Коррексияи аввалия','Нодҳо, Log ва LUT']},
+ figma:{t:'UI-дизайн дар Figma', d:'Фреймҳо, Auto Layout, компонентҳо, тӯр ва прототипҳо — аввалин экрани барномаи худро месозед.',
+  s:['Сохтани макетҳо бо фреймҳо ва Auto Layout','Сохтани компонентҳо ва вариантҳо','Риояи тӯр ва контраст','Сохтани прототипҳои интерактивӣ'], m:['Фреймҳо ва Auto Layout','Компонентҳо','Тӯр ва прототип']},
+ smm:{t:'SMM ва маркетинги рақамӣ', d:'Портрети мизоҷ, нақшаи контент, видеоҳои кӯтоҳ ва метрикаҳое, ки нишон медиҳанд реклама худро сафед мекунад.',
+  s:['Тавсифи аудиторияи мақсаднок','Тартиб додани нақшаи контент','Сохтани видеоҳои кӯтоҳи ҷолиб','Ҳисоби ER, CTR ва CPA'], m:['Аудитория','Контент','Метрикаҳо']},
+ fin:{t:'Саводнокии молиявӣ', d:'Буҷети шахсӣ, захираи бехатарӣ, фоизи мураккаб ва қарзҳо бе дом — бо мисолҳо бо сомонӣ.',
+  s:['Пешбурди буҷети шахсӣ бо қоидаи 50/30/20','Ҳисоби фоизи мураккаб','Ба назар гирифтани таваррум','Арзёбии қарз аз рӯи меъёри самаранок'], m:['Буҷет','Пасандозҳо','Қарзҳо']},
+ tajik:{t:'Забони тоҷикӣ барои навомӯзон', d:'Алифбо, саломдиҳӣ, ҷонишинҳо, шумораҳо ва аввалин ибораҳо барои муошират дар Тоҷикистон.',
+  s:['Хондани шаш ҳарфи махсуси алифбо','Салом додан ва ташаккур гуфтан','Сохтани ҷумлаҳои содда','Шумориш аз 1 то 10'], m:['Алифбо ва саломдиҳӣ','Ҷонишинҳо','Шумораҳо ва калимаҳои ҳаррӯза']},
+ english:{t:'Забони англисӣ A1–A2', d:'Асосҳои забони англисӣ: to be, Present Simple, Past Simple ва феълҳои нодуруст — бо машқҳо.',
+  s:['Сохтани ҷумлаҳо бо to be','Гап задан дар бораи одатҳо бо Present Simple','Нақл кардани гузашта бо Past Simple','Донистани феълҳои нодурусти маъмул'], m:['Феъли to be','Present Simple','Past Simple']}
+};
+const cTitle = c => LANG === 'tj' ? TJC[c.id].t : c.title;
+const cDesc = c => LANG === 'tj' ? TJC[c.id].d : c.desc;
+const cSkills = c => LANG === 'tj' ? TJC[c.id].s : c.skills;
+const mTitle = (c, mi) => LANG === 'tj' ? TJC[c.id].m[mi] : c.modules[mi].title;
+
+const TRACKS = [
+ {id:'t-web', courses:['python','web','sql'], ru:{t:'Веб-разработчик', d:'Python для логики, вёрстка и JavaScript для интерфейса, SQL для данных. Достаточно для первых заказов и стажировки.'},
+  tj:{t:'Веб-барномасоз', d:'Python барои мантиқ, тамғагузорӣ ва JavaScript барои интерфейс, SQL барои маълумот. Барои фармоишҳои аввал ва таҷрибаомӯзӣ кифоя аст.'}},
+ {id:'t-data', courses:['excel','sql','analytics'], ru:{t:'Аналитик данных', d:'Путь от таблиц Excel до pandas и проверки гипотез. Для работы в банках, ритейле и телекоме.'},
+  tj:{t:'Таҳлилгари маълумот', d:'Роҳ аз ҷадвалҳои Excel то pandas ва санҷиши фарзияҳо. Барои кор дар бонкҳо, савдо ва телекоммуникатсия.'}},
+ {id:'t-video', courses:['montage','color','smm'], ru:{t:'Видеопродакшн', d:'Монтаж, цвет и продвижение роликов. Для тех, кто снимает рекламу, клипы и контент для брендов.'},
+  tj:{t:'Видеопродакшн', d:'Монтаж, ранг ва пешбурди видеоҳо. Барои онҳое, ки реклама, клип ва контент барои брендҳо месозанд.'}},
+ {id:'t-mkt', courses:['smm','figma','analytics'], ru:{t:'Digital-маркетолог', d:'Контент и реклама, дизайн креативов и аналитика результатов в одной профессии.'},
+  tj:{t:'Маркетологи рақамӣ', d:'Контент ва реклама, дизайни креативҳо ва таҳлили натиҷаҳо дар як касб.'}}
+];
+TRACKS.forEach(tr => tr.hours = tr.courses.reduce((s, id) => s + byId(id).hours, 0));
+const trTitle = tr => tr[LANG].t, trDesc = tr => tr[LANG].d;
+
+function byId(id){ return COURSES.find(c => c.id === id); }
+function trackById(id){ return TRACKS.find(x => x.id === id); }
+function stepsOf(c){
+  if(c._steps) return c._steps;
+  const a = [];
+  c.modules.forEach((m, mi) => m.steps.forEach((s, si) => a.push({key:`m${mi}s${si}`, mi, s})));
+  a.push({key:'exam', mi:-1, s:{t:'exam', title:'exam'}});
+  return c._steps = a;
+}
+const stepTitle = x => x.s.t === 'exam' ? t('exam') : x.s.title;
+const lessonsN = c => stepsOf(c).filter(x => x.s.t === 'text').length;
+const tasksN = c => c.modules.reduce((s, m) => s + m.steps.reduce((q, st) => q + (st.qs ? st.qs.length : 0), 0), 0) + c.exam.length;
+
+/* ================= users ================= */
+const users = () => LS.get('rh.users', {});
+function me(){ const e = LS.get('rh.session', null); return e ? (users()[e] || null) : null; }
+function saveMe(u){ const all = users(); all[u.email] = u; LS.set('rh.users', all); }
+async function hashPw(pw, salt){
+  const data = new TextEncoder().encode(salt + ':' + pw);
+  try{ const buf = await crypto.subtle.digest('SHA-256', data); return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join(''); }
+  catch(e){ let h = 5381; for(const ch of salt + pw) h = ((h << 5) + h + ch.charCodeAt(0)) | 0; return 'f' + (h >>> 0).toString(16); }
+}
+const prog = (u, c) => u && u.progress[c.id];
+function allStepsDone(u, c){ const p = prog(u, c); return !!p && stepsOf(c).every(x => x.key === 'exam' || p.done[x.key]); }
+function courseDone(u, c){ const p = prog(u, c); return !!p && allStepsDone(u, c) && p.exam.passed; }
+function pct(u, c){
+  const p = prog(u, c); if(!p) return 0;
+  const st = stepsOf(c);
+  const n = st.filter(x => x.key !== 'exam' && p.done[x.key]).length + (p.exam.passed ? 1 : 0);
+  return Math.round(n / st.length * 100);
+}
+function firstOpen(u, c){
+  const p = prog(u, c); const st = stepsOf(c);
+  const i = st.findIndex(x => x.key === 'exam' ? !p.exam.passed : !p.done[x.key]);
+  return i < 0 ? 0 : i;
+}
+function newProg(){ return {enrolled:new Date().toISOString(), done:{}, exam:{best:0, passed:false, tries:0}}; }
+function makeDoc(u, type, ref, title, hours, score, courses){
+  const pre = {cert:'С', udost:'У', diploma:'Д'}[type];
+  return {id:'d' + Date.now().toString(36) + Math.random().toString(36).slice(2,6), type, ref, title, hours, score,
+    courses: courses || null, name:u.name, num:`РН-${pre}-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`, date:new Date().toISOString()};
+}
+function issueDocs(u){
+  const fresh = [];
+  for(const c of COURSES){
+    if(courseDone(u, c) && !u.docs.find(d => d.ref === c.id)){
+      const d = makeDoc(u, c.kind, c.id, c.title, c.hours, u.progress[c.id].exam.best);
+      u.docs.push(d); fresh.push(d);
+    }
+  }
+  for(const tr of TRACKS){
+    const got = tr.courses.map(id => u.docs.find(d => d.ref === id));
+    if(got.every(Boolean) && !u.docs.find(d => d.ref === tr.id)){
+      const avg = Math.round(got.reduce((s, d) => s + d.score, 0) / got.length);
+      const d = makeDoc(u, 'diploma', tr.id, tr.ru.t, tr.hours, avg, tr.courses);
+      u.docs.push(d); fresh.push(d);
+    }
+  }
+  return fresh;
+}
+function docTitle(d){
+  const c = byId(d.ref); if(c) return cTitle(c);
+  const tr = trackById(d.ref); if(tr) return trTitle(tr);
+  return d.title;
+}
+function docCourses(d){
+  const tr = trackById(d.ref);
+  return tr ? tr.courses.map(id => cTitle(byId(id))) : (d.courses || []);
+}
+
+/* ================= documents ================= */
+function sampleDoc(type, ref){
+  const c = byId(ref), tr = trackById(ref);
+  return {type, ref, sample:true, name:t('your_name'), hours: c ? c.hours : tr.hours, score: type === 'diploma' ? 90 : 92,
+    num:`РН-${({cert:'С', udost:'У', diploma:'Д'})[type]}-2026-000000`, date:'2026-10-12T10:00:00'};
+}
+function docHTML(d, cls){
+  const wm = d.sample ? `<div class="wm">${t('sample')}</div>` : '';
+  const date = fmtDate(d.date), title = esc(docTitle(d));
+  const sign = `<div class="sign"><i>Rohnamo</i>${DT('sign')}</div>`;
+  if(d.type === 'udost'){
+    return `<div class="docbox ${cls || ''}"><div class="doc udost"><div class="band"></div><div class="in">
+      <div class="pg l">${MARK}<div class="brand">РОҲНАМО</div><div class="dtype">${DT('udost_type')}</div><div class="dsub">${DT('udost_sub')}</div><span class="num">№ ${esc(d.num)}</span><div class="dmeta">${DT('issued')}: ${date}<br>${DT('city')}</div></div>
+      <div class="pg r"><div class="dtext">${DT('udost_t1')}</div><div class="dname">${esc(d.name)}</div><div class="dtext">${DT('udost_t2')}:</div><div class="dcourse">«${title}»</div><div class="dmeta">${DT('udost_vol', d.hours)}<br>${DT('att')}: ${d.score}%</div><div class="dfoot">${seal()}${sign}</div></div>
+    </div>${wm}</div></div>`;
+  }
+  const isD = d.type === 'diploma';
+  const list = isD ? `<div class="dlist">${DT('courses')}: ${docCourses(d).map(esc).join(' · ')}</div>` : '';
+  return `<div class="docbox ${cls || ''}"><div class="doc ${d.type}"><div class="band"></div><div class="in">
+    <div class="brand">${MARK}РОҲНАМО</div>
+    <div class="dtype">${isD ? DT('dip_type') : DT('cert_type')}</div>
+    <div class="dsub">${isD ? DT('dip_sub') : DT('cert_sub')}</div>
+    <div class="dname">${esc(d.name)}</div>
+    <div class="dtext">${isD ? DT('dip_text') : DT('cert_text')}:</div>
+    <div class="dcourse">«${title}»</div>
+    <div class="dmeta">${DT('vol', d.hours)} · ${isD ? DT('avg') : DT('score')}: ${d.score}% · ${DT('issued')}: ${date}</div>
+    ${list}
+    <div class="dfoot"><div>${DT('reg')}<span class="num">${esc(d.num)}</span></div>${seal()}${sign}</div>
+  </div>${wm}</div></div>`;
+}
+/* shrink-to-fit so long titles, names and the word «Удостоверение / Шаҳодатнома» never spill out */
+function fitDocs(){
+  document.querySelectorAll('.doc').forEach(doc => {
+    if(!doc.offsetWidth) return;
+    doc.style.setProperty('--k', 1);
+    doc.querySelectorAll('.dtype').forEach(el => {
+      el.style.setProperty('--fw', 1);
+      const r = el.clientWidth / el.scrollWidth;
+      if(r < 1) el.style.setProperty('--fw', (r * 0.96).toFixed(3));
+    });
+    const boxes = [...(doc.classList.contains('udost') ? doc.querySelectorAll('.pg') : doc.querySelectorAll('.in'))];
+    const over = () => boxes.some(b => b.scrollHeight > b.clientHeight + 1);
+    let k = 1;
+    while(over() && k > 0.6){ k -= 0.04; doc.style.setProperty('--k', k.toFixed(2)); }
+  });
+}
+
+/* ================= 3D portal (three.js) ================= */
+const Hero3D = (() => {
+  let renderer, scene, camera, group, star, glow, dust, raf = 0, host = null, ready = false, failed = false, ro = null, io = null, visible = true;
+  let mx = 0, my = 0, tx = 0, ty = 0; const t0 = performance.now();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function archPts(P, w, base, sh, apex){
+    const cy = sh + (apex - sh) * 0.62;
+    P.moveTo(-w, base); P.lineTo(-w, sh); P.quadraticCurveTo(-w, cy, 0, apex); P.quadraticCurveTo(w, cy, w, sh); P.lineTo(w, base); P.lineTo(-w, base);
+    return P;
+  }
+  function roundRect(P, x, y, w, h, r){
+    P.moveTo(x + r, y); P.lineTo(x + w - r, y); P.quadraticCurveTo(x + w, y, x + w, y + r); P.lineTo(x + w, y + h - r); P.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    P.lineTo(x + r, y + h); P.quadraticCurveTo(x, y + h, x, y + h - r); P.lineTo(x, y + r); P.quadraticCurveTo(x, y, x + r, y); return P;
+  }
+  function starShape(R, r, n = 8){
+    const s = new THREE.Shape();
+    for(let i = 0; i < n * 2; i++){ const a = Math.PI / n * i + Math.PI / 2; const rr = i % 2 ? r : R; const x = Math.cos(a) * rr, y = Math.sin(a) * rr; i ? s.lineTo(x, y) : s.moveTo(x, y); }
+    s.closePath(); return s;
+  }
+  function canvasTex(w, h, draw){ const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const tx = new THREE.CanvasTexture(c); tx.encoding = THREE.sRGBEncoding; return tx; }
+  function lapisTex(){
+    const tx = canvasTex(512, 512, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, '#2b55c6'); gr.addColorStop(.5, '#1e3f9f'); gr.addColorStop(1, '#2a50ba'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      for(let i = 0; i < 700; i++){ g.fillStyle = `rgba(${10 + Math.random() * 40},${30 + Math.random() * 50},${110 + Math.random() * 90},${Math.random() * .3})`; g.beginPath(); g.arc(Math.random() * w, Math.random() * h, 4 + Math.random() * 30, 0, 7); g.fill(); }
+      for(let i = 0; i < 90; i++){ g.strokeStyle = `rgba(190,205,255,${Math.random() * .12})`; g.lineWidth = Math.random() * 2; g.beginPath(); const x = Math.random() * w, y = Math.random() * h; g.moveTo(x, y); g.bezierCurveTo(x + 40, y + 20, x + 60, y - 30, x + 120, y + 10); g.stroke(); }
+      for(let i = 0; i < 320; i++){ g.fillStyle = `rgba(255,${195 + Math.random() * 50},${80 + Math.random() * 70},${.55 + Math.random() * .45})`; const s = Math.random() * 2.4 + .5; g.fillRect(Math.random() * w, Math.random() * h, s, s); }
+    });
+    tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(.42, .42); tx.anisotropy = 4; return tx;
+  }
+  function skyTex(){
+    return canvasTex(512, 1024, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, 0, h);
+      gr.addColorStop(0, '#060d2a'); gr.addColorStop(.38, '#18337f'); gr.addColorStop(.58, '#5a4e9a'); gr.addColorStop(.7, '#d0704a'); gr.addColorStop(.8, '#f7b64c'); gr.addColorStop(1, '#ffe2a0');
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      for(let i = 0; i < 160; i++){ const y = Math.random() * h * .55; g.fillStyle = `rgba(255,255,255,${(1 - y / (h * .55)) * (.4 + Math.random() * .6)})`; const s = Math.random() * 2.2 + .6; g.beginPath(); g.arc(Math.random() * w, y, s, 0, 7); g.fill(); }
+      const sun = g.createRadialGradient(w / 2, h * .74, 0, w / 2, h * .74, w * .55); sun.addColorStop(0, 'rgba(255,240,200,.9)'); sun.addColorStop(1, 'rgba(255,200,120,0)'); g.fillStyle = sun; g.fillRect(0, 0, w, h);
+      const ridge = (pts, col) => { g.fillStyle = col; g.beginPath(); g.moveTo(0, h); pts.forEach(([x, y]) => g.lineTo(x * w, y * h)); g.lineTo(w, h); g.closePath(); g.fill(); };
+      ridge([[0, .72], [.12, .66], [.22, .7], [.36, .6], [.5, .67], [.62, .58], [.76, .66], [.88, .62], [1, .69]], '#3a4486');
+      g.fillStyle = 'rgba(255,255,255,.85)';
+      [[.36, .6], [.62, .58]].forEach(([x, y]) => { g.beginPath(); g.moveTo(x * w, y * h); g.lineTo(x * w - 26, y * h + 30); g.lineTo(x * w - 6, y * h + 22); g.lineTo(x * w + 8, y * h + 32); g.lineTo(x * w + 28, y * h + 28); g.closePath(); g.fill(); });
+      ridge([[0, .8], [.18, .74], [.34, .79], [.52, .73], [.7, .8], [.86, .75], [1, .79]], '#1d2560');
+      g.fillStyle = '#0d1440'; g.fillRect(0, h * .86, w, h * .14);
+    });
+  }
+  function glowTex(){
+    return canvasTex(256, 256, (g, w) => { const r = g.createRadialGradient(w / 2, w / 2, 0, w / 2, w / 2, w / 2); r.addColorStop(0, 'rgba(255,248,220,1)'); r.addColorStop(.25, 'rgba(255,210,110,.55)'); r.addColorStop(1, 'rgba(255,190,80,0)'); g.fillStyle = r; g.fillRect(0, 0, w, w); });
+  }
+
+  function init(){
+    if(ready) return true; if(failed || !window.THREE) return false;
+    try{
+      renderer = new THREE.WebGLRenderer({antialias:true, alpha:true, powerPreference:'high-performance'});
+    }catch(e){ failed = true; return false; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.08;
+    renderer.setClearColor(0x000000, 0);
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(30, 1, .1, 100); camera.position.set(0, .3, 12.2);
+
+    /* studio environment for reflections */
+    const pm = new THREE.PMREMGenerator(renderer);
+    const env = new THREE.Scene();
+    const sg = new THREE.SphereGeometry(20, 32, 16); const pos = sg.attributes.position; const cols = []; const c = new THREE.Color();
+    for(let i = 0; i < pos.count; i++){ const y = pos.getY(i) / 20; if(y > 0) c.setRGB(.18 + y * .2, .22 + y * .25, .42 + y * .3); else c.setRGB(.5 + y * .45, .38 + y * .32, .26 + y * .22); cols.push(c.r, c.g, c.b); }
+    sg.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+    env.add(new THREE.Mesh(sg, new THREE.MeshBasicMaterial({vertexColors:true, side:THREE.BackSide})));
+    const panel = (w, h, x, y, z, col, k) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({color:new THREE.Color(col).multiplyScalar(k), side:THREE.DoubleSide})); m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m); };
+    panel(9, 4, -6, 7, 7, 0xfff1d6, 5); panel(6, 8, 9, 2, -3, 0x9db8ff, 3); panel(12, 2.4, 0, -6, 9, 0xffc070, 2); panel(4, 4, 0, 10, -2, 0xffffff, 2.5);
+    scene.environment = pm.fromScene(env, .035).texture;
+
+    const gold = new THREE.MeshPhysicalMaterial({color:0xf2bb4c, metalness:1, roughness:.2, clearcoat:.5, clearcoatRoughness:.15});
+    const goldWarm = gold.clone(); goldWarm.emissive = new THREE.Color(0x8a5200); goldWarm.emissiveIntensity = .35;
+    const lapis = new THREE.MeshPhysicalMaterial({color:0xffffff, map:lapisTex(), metalness:.12, roughness:.34, clearcoat:1, clearcoatRoughness:.07});
+    const lapisDark = new THREE.MeshPhysicalMaterial({color:0x15296a, metalness:.2, roughness:.3, clearcoat:1, clearcoatRoughness:.1});
+
+    group = new THREE.Group(); scene.add(group);
+    const W = 1.65, H = 2.15;
+
+    // portal frame (pishtaq) with pointed-arch opening
+    const frame = roundRect(new THREE.Shape(), -W, -H, W * 2, H * 2, .2);
+    frame.holes.push(archPts(new THREE.Path(), 1.02, -1.86, .35, 1.62));
+    const fg = new THREE.ExtrudeGeometry(frame, {depth:.55, bevelEnabled:true, bevelThickness:.08, bevelSize:.06, bevelSegments:6, curveSegments:48});
+    fg.translate(0, 0, -.275); group.add(new THREE.Mesh(fg, lapis));
+
+    // inset gold border on the front face
+    const ring = roundRect(new THREE.Shape(), -W + .12, -H + .12, (W - .12) * 2, (H - .12) * 2, .12);
+    ring.holes.push(roundRect(new THREE.Path(), -W + .19, -H + .19, (W - .19) * 2, (H - .19) * 2, .08));
+    const rg = new THREE.ExtrudeGeometry(ring, {depth:.03, bevelEnabled:true, bevelThickness:.015, bevelSize:.012, bevelSegments:2, curveSegments:24});
+    rg.translate(0, 0, .345); group.add(new THREE.Mesh(rg, gold));
+
+    // gold rim tube around the arch
+    const w = 1.06, base = -1.86, sh = .35, apex = 1.68, cy = sh + (apex - sh) * .62, z = .35;
+    const cp = new THREE.CurvePath();
+    cp.add(new THREE.LineCurve3(new THREE.Vector3(-w, base, z), new THREE.Vector3(-w, sh, z)));
+    cp.add(new THREE.QuadraticBezierCurve3(new THREE.Vector3(-w, sh, z), new THREE.Vector3(-w, cy, z), new THREE.Vector3(0, apex, z)));
+    cp.add(new THREE.QuadraticBezierCurve3(new THREE.Vector3(0, apex, z), new THREE.Vector3(w, cy, z), new THREE.Vector3(w, sh, z)));
+    cp.add(new THREE.LineCurve3(new THREE.Vector3(w, sh, z), new THREE.Vector3(w, base, z)));
+    group.add(new THREE.Mesh(new THREE.TubeGeometry(cp, 260, .06, 14, false), gold));
+
+    // dusk sky with Pamir ridges behind the arch
+    const sky = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.7), new THREE.MeshBasicMaterial({map:skyTex(), toneMapped:false}));
+    sky.position.set(0, -.12, -.22); group.add(sky);
+
+    // glowing road toward the star
+    const road = new THREE.Shape(); road.moveTo(-.78, -1.86); road.lineTo(.78, -1.86); road.lineTo(.06, -.4); road.lineTo(-.06, -.4); road.closePath();
+    const rdg = new THREE.ShapeGeometry(road); const uv = rdg.attributes.uv, rp = rdg.attributes.position;
+    for(let i = 0; i < uv.count; i++) uv.setXY(i, (rp.getX(i) + .78) / 1.56, (rp.getY(i) + 1.86) / 1.46);
+    const alpha = canvasTex(4, 256, (g, ww, hh) => { const gr = g.createLinearGradient(0, hh, 0, 0); gr.addColorStop(0, '#fff'); gr.addColorStop(.7, '#aaa'); gr.addColorStop(1, '#000'); g.fillStyle = gr; g.fillRect(0, 0, ww, hh); });
+    alpha.encoding = THREE.LinearEncoding;
+    const roadM = new THREE.Mesh(rdg, new THREE.MeshBasicMaterial({color:0xffcf6a, alphaMap:alpha, transparent:true, toneMapped:false}));
+    roadM.position.z = -.16; group.add(roadM);
+
+    // the guiding star
+    const sgeo = new THREE.ExtrudeGeometry(starShape(.42, .19), {depth:.12, bevelEnabled:true, bevelThickness:.05, bevelSize:.035, bevelSegments:4});
+    sgeo.center(); star = new THREE.Mesh(sgeo, goldWarm); star.position.set(0, .62, .02); group.add(star);
+    glow = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex(), blending:THREE.AdditiveBlending, transparent:true, depthWrite:false, toneMapped:false}));
+    glow.scale.set(2.3, 2.3, 1); glow.position.set(0, .62, -.08); group.add(glow);
+    const pl = new THREE.PointLight(0xffc96a, 1.6, 5); pl.position.set(0, .62, .6); group.add(pl);
+
+    // spandrel stars
+    [-1.3, 1.3].forEach(x => { const g = new THREE.ExtrudeGeometry(starShape(.17, .08), {depth:.04, bevelEnabled:true, bevelThickness:.015, bevelSize:.012, bevelSegments:2}); g.center(); const m = new THREE.Mesh(g, gold); m.position.set(x, 1.74, .34); group.add(m); });
+
+    // plinth steps
+    const s1 = new THREE.Mesh(new THREE.BoxGeometry(3.7, .1, .95), gold); s1.position.set(0, -H - .05, .02); group.add(s1);
+    const s2 = new THREE.Mesh(new THREE.BoxGeometry(4.1, .26, 1.25), lapisDark); s2.position.set(0, -H - .23, .06); group.add(s2);
+    const s3 = new THREE.Mesh(new THREE.BoxGeometry(4.15, .04, 1.3), gold); s3.position.set(0, -H - .1, .06); group.add(s3);
+
+    // soft contact shadow
+    const sh2 = new THREE.Mesh(new THREE.PlaneGeometry(6.4, 2.6), new THREE.MeshBasicMaterial({map:canvasTex(256, 128, (g, ww, hh) => { const r = g.createRadialGradient(ww / 2, hh / 2, 0, ww / 2, hh / 2, ww / 2); r.addColorStop(0, 'rgba(5,10,30,.55)'); r.addColorStop(1, 'rgba(5,10,30,0)'); g.fillStyle = r; g.fillRect(0, 0, ww, hh); }), transparent:true, depthWrite:false}));
+    sh2.rotation.x = -Math.PI / 2; sh2.position.set(0, -H - .37, .1); group.add(sh2);
+
+    // gold dust
+    const n = 170, dp = new Float32Array(n * 3);
+    for(let i = 0; i < n; i++){ dp[i * 3] = (Math.random() - .5) * 6.4; dp[i * 3 + 1] = Math.random() * 5.6 - 2.4; dp[i * 3 + 2] = (Math.random() - .5) * 3.4; }
+    const dg = new THREE.BufferGeometry(); dg.setAttribute('position', new THREE.BufferAttribute(dp, 3));
+    dust = new THREE.Points(dg, new THREE.PointsMaterial({size:.05, map:glowTex(), color:0xffd27a, transparent:true, opacity:.85, depthWrite:false, blending:THREE.AdditiveBlending, toneMapped:false}));
+    scene.add(dust);
+
+    scene.add(new THREE.AmbientLight(0x8899ff, .25));
+    const key = new THREE.DirectionalLight(0xfff0d8, 2.1); key.position.set(-4, 5, 6); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x7f9cff, 1.6); rim.position.set(5, 2, -4); scene.add(rim);
+    group.position.y = .18;
+
+    addEventListener('pointermove', e => { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; }, {passive:true});
+    ro = new ResizeObserver(size);
+    io = new IntersectionObserver(es => { visible = es[0].isIntersecting; if(visible) loop(); });
+    ready = true; return true;
+  }
+  function size(){
+    if(!host) return; const w = host.clientWidth, h = host.clientHeight; if(!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); if(reduce) draw(0);
+  }
+  function draw(time){
+    tx += (mx - tx) * .05; ty += (my - ty) * .05;
+    group.rotation.y = (reduce ? .34 : Math.sin(time * .45) * .38) + tx * .32;
+    group.rotation.x = -.03 + ty * .1;
+    star.rotation.y = reduce ? .5 : time * 1.1;
+    star.position.y = .62 + (reduce ? 0 : Math.sin(time * 1.6) * .05);
+    glow.material.opacity = .78 + .22 * Math.sin(time * 2);
+    dust.rotation.y = time * .035; dust.position.y = Math.sin(time * .3) * .08;
+    renderer.render(scene, camera);
+  }
+  function loop(){
+    cancelAnimationFrame(raf);
+    if(!host || !visible) return;
+    const tick = () => { if(!host || !visible) return; draw((performance.now() - t0) / 1000); if(!reduce) raf = requestAnimationFrame(tick); };
+    tick();
+  }
+  return {
+    attach(el){
+      if(!init()) return;
+      if(host && host !== el){ ro.unobserve(host); io.unobserve(host); }
+      host = el; el.appendChild(renderer.domElement); ro.observe(el); io.observe(el); size();
+      draw(0); requestAnimationFrame(() => el.classList.add('live')); loop();
+    },
+    stop(){ cancelAnimationFrame(raf); if(host){ ro.unobserve(host); io.unobserve(host); } host = null; }
+  };
+})();
+
+/* ================= state & render ================= */
+const S = {view:'home', p:{}, cat:'all', q:'', lvl:'', kind:'', res:null, after:null};
+const app = document.getElementById('app'), topEl = document.getElementById('top'), footEl = document.getElementById('foot'), modal = document.getElementById('modal');
+
+function go(view, p){ S.view = view; S.p = p || {}; S.res = null; closeModal(); render(); window.scrollTo(0, 0); }
+function render(){
+  document.documentElement.lang = LANG === 'tj' ? 'tg' : 'ru';
+  renderTop();
+  app.innerHTML = (VIEWS[S.view] || VIEWS.home)();
+  footEl.innerHTML = `<div class="wrap"><span class="brandline">${MARK}${WORD()}<span>· ${t('foot')}</span></span><span>© 2026 Роҳнамо</span></div>`;
+  const h = document.getElementById('hero3d'); if(h) Hero3D.attach(h); else Hero3D.stop();
+  fitDocs();
+}
+
+function renderTop(){
+  const u = me();
+  const nav = [['home', t('nav_home')], ['catalog', t('nav_courses')], ['tracks', t('nav_tracks')], ['verify', t('nav_verify')]];
+  const active = S.view === 'course' || S.view === 'learn' ? 'catalog' : S.view;
+  topEl.innerHTML = `<div class="wrap"><button class="logo" data-go="home" aria-label="${t('home_aria')}">${MARK}${WORD()}</button>
+    <nav class="nav" aria-label="Menu">${nav.map(([v, n]) => `<button data-go="${v}" ${active === v ? 'aria-current="page"' : ''}>${n}</button>`).join('')}</nav>
+    <div class="auth"><div class="lang" role="group" aria-label="Забон / Язык"><button data-act="lang" data-v="tj" aria-pressed="${LANG === 'tj'}">ТҶ</button><button data-act="lang" data-v="ru" aria-pressed="${LANG === 'ru'}">РУ</button></div>
+    ${u ? `<button class="me" data-go="cabinet" aria-label="${t('cab_aria')}"><span class="ava">${esc(initials(u.name))}</span><span>${esc(firstName(u.name))}</span></button>`
+      : `<button class="btn btn-ghost btn-sm" data-act="login">${t('login')}</button><button class="btn btn-primary btn-sm" data-act="signup">${t('signup')}</button>`}</div></div>`;
+}
+
+function cardHTML(c, u){
+  const p = prog(u, c);
+  const done = u && courseDone(u, c);
+  const status = done ? `<span class="badge">✓ ${t('got', c.kind)}</span>`
+    : p ? `<div class="prow"><div class="bar"><i style="width:${pct(u, c)}%"></i></div><span>${pct(u, c)}%</span></div>` : '';
+  return `<button class="card" data-go="course" data-id="${c.id}" style="--h:${c.h}">
+    <div class="cover"><span class="kind">${KIND()[c.kind]}</span><span class="glyph">${esc(c.glyph)}</span><span class="lvl">${I[LANG].lv[c.level]}</span></div>
+    <div class="card-b"><h3>${esc(cTitle(c))}</h3><p>${esc(cDesc(c))}</p>
+    <div class="meta"><span>${t('hrs', c.hours)}</span><span>${N(lessonsN(c), 'lesson')}</span><span>${N(tasksN(c), 'task')}</span></div>${status}</div></button>`;
+}
+
+function trackHTML(tr, u){
+  const doneN = u ? tr.courses.filter(id => courseDone(u, byId(id))).length : 0;
+  const dip = u && u.docs.find(d => d.ref === tr.id);
+  return `<article class="track"><div><div class="eyebrow">${t('profession', tr.hours)}</div><h3 style="margin-top:6px">${esc(trTitle(tr))}</h3></div><p>${esc(trDesc(tr))}</p>
+    <ol class="tk-list">${tr.courses.map((id, k) => { const c = byId(id); const d = u && courseDone(u, c);
+      return `<li class="${d ? 'done' : ''}"><span class="n">${d ? '✓' : k + 1}</span><button data-go="course" data-id="${id}">${esc(cTitle(c))}</button><span class="h">${t('hrs', c.hours)}</span></li>`; }).join('')}</ol>
+    <div class="tk-foot">${u ? `<div class="prow"><div class="bar"><i style="width:${Math.round(doneN / 3 * 100)}%"></i></div><span>${t('of3', doneN)}</span></div>` : ''}
+    ${dip ? `<button class="btn btn-accent btn-sm" data-go="doc" data-id="${dip.id}">${t('open_diploma')}</button>` : `<span>${t('tr_after')}</span>`}</div></article>`;
+}
+
+/* ================= views ================= */
+const VIEWS = {};
+
+VIEWS.home = () => {
+  const u = me();
+  const nL = COURSES.reduce((s, c) => s + lessonsN(c), 0), nT = COURSES.reduce((s, c) => s + tasksN(c), 0), nH = COURSES.reduce((s, c) => s + c.hours, 0);
+  return `<section class="wrap hero">
+    <div>
+      <div class="eyebrow">${t('eyebrow_hero')}</div>
+      <h1 class="w3d big">Роҳнамо</h1>
+      <p class="tr">${t('hero_tr')}</p>
+      <p class="lead">${t('hero_lead')}</p>
+      <div class="hero-cta">${u ? `<button class="btn btn-primary btn-lg" data-go="cabinet">${t('cta_continue')}</button>` : `<button class="btn btn-primary btn-lg" data-act="signup">${t('cta_start')}</button>`}<button class="btn btn-ghost btn-lg" data-go="catalog">${t('cta_catalog')}</button></div>
+      <div class="stats"><div class="stat"><b>${COURSES.length}</b><span>${t('st_courses')}</span></div><div class="stat"><b>${nL}</b><span>${t('st_lessons')}</span></div><div class="stat"><b>${nT}</b><span>${t('st_tasks')}</span></div><div class="stat"><b>${nH}</b><span>${t('st_hours')}</span></div></div>
+    </div>
+    <div class="hero3d" id="hero3d" aria-hidden="true"><svg class="fallback" viewBox="0 0 64 64"><use href="#rh-mark"/></svg><span class="cap">${t('hero_cap')}</span></div>
+  </section>
+  <div class="ikat"></div>
+  <section class="wrap sec">
+    <div class="sec-h"><div><div class="eyebrow">${t('cat_eyebrow')}</div><h2>${t('pick_dir')}</h2></div><button class="btn btn-ghost" data-go="catalog">${t('all_courses')}</button></div>
+    <div class="chips" style="margin-bottom:24px">${CAT_IDS.slice(1).map(id => `<button class="chip" data-act="cat" data-v="${id}">${I[LANG].cats[id]} · ${COURSES.filter(c => c.cat === id).length}</button>`).join('')}</div>
+    <div class="grid">${['python','web','montage','color','analytics','tajik'].map(id => cardHTML(byId(id), u)).join('')}</div>
+  </section>
+  <section class="sec alt"><div class="wrap">
+    <div class="sec-h"><div><div class="eyebrow">${t('how_eyebrow')}</div><h2>${t('how_title')}</h2></div></div>
+    <div class="steps4">${[1, 2, 3, 4].map(n => `<div class="st4"><b>${n}</b><h3>${t('how' + n + 't')}</h3><p>${t('how' + n)}</p></div>`).join('')}</div>
+  </div></section>
+  <section class="wrap sec">
+    <div class="sec-h"><div><div class="eyebrow">${t('docs_eyebrow')}</div><h2>${t('docs_title')}</h2><p>${t('docs_p')}</p></div></div>
+    <div class="docs3">
+      <div>${docHTML(sampleDoc('cert', 'python'))}<h3>${t('d_cert_t')}</h3><p>${t('d_cert_p')}</p></div>
+      <div>${docHTML(sampleDoc('udost', 'color'))}<h3>${t('d_udost_t')}</h3><p>${t('d_udost_p')}</p></div>
+      <div>${docHTML(sampleDoc('diploma', 't-web'))}<h3>${t('d_dip_t')}</h3><p>${t('d_dip_p')}</p></div>
+    </div>
+  </section>
+  <section class="sec alt"><div class="wrap">
+    <div class="sec-h"><div><div class="eyebrow">${t('tr_eyebrow')}</div><h2>${t('tr_title')}</h2><p>${t('tr_p')}</p></div></div>
+    <div class="tracks">${TRACKS.map(tr => trackHTML(tr, u)).join('')}</div>
+  </div></section>`;
+};
+
+function filtered(){
+  const q = norm(S.q);
+  return COURSES.filter(c => (S.cat === 'all' || c.cat === S.cat) && (!S.lvl || c.level === S.lvl) && (!S.kind || c.kind === S.kind)
+    && (!q || norm([c.title, c.desc, c.skills.join(' '), TJC[c.id].t, TJC[c.id].d, TJC[c.id].s.join(' ')].join(' ')).includes(q)));
+}
+function gridHTML(){
+  const list = filtered(); const u = me();
+  return list.length ? `<div class="grid">${list.map(c => cardHTML(c, u)).join('')}</div>`
+    : `<div class="empty">${t('nothing')}<div style="margin-top:14px"><button class="btn btn-ghost btn-sm" data-act="reset">${t('reset')}</button></div></div>`;
+}
+VIEWS.catalog = () => `<section class="wrap pagehead">
+    <div class="eyebrow">${t('cat_eyebrow')}</div><h1 class="ph">${t('catalog_title')}</h1>
+    <div class="filters">
+      <div class="search"><input class="inp" id="q" type="search" placeholder="${t('search_ph')}" value="${esc(S.q)}" aria-label="${t('search_aria')}"></div>
+      <div class="frow"><span class="lbl">${t('f_dir')}</span><div class="chips">${CAT_IDS.map(id => `<button class="chip" data-act="cat" data-v="${id}" aria-pressed="${S.cat === id}">${I[LANG].cats[id]}</button>`).join('')}</div></div>
+      <div class="frow"><span class="lbl">${t('f_level')}</span><div class="chips">${[['', t('any')], ['b', I[LANG].lv.b], ['m', I[LANG].lv.m]].map(([v, n]) => `<button class="chip" data-act="lvl" data-v="${v}" aria-pressed="${S.lvl === v}">${n}</button>`).join('')}</div></div>
+      <div class="frow"><span class="lbl">${t('f_doc')}</span><div class="chips">${[['', t('any')], ['cert', KIND().cert], ['udost', KIND().udost]].map(([v, n]) => `<button class="chip" data-act="kind" data-v="${v}" aria-pressed="${S.kind === v}">${n}</button>`).join('')}</div></div>
+    </div>
+  </section>
+  <section class="wrap" style="padding-bottom:64px"><div id="grid">${gridHTML()}</div></section>`;
+
+VIEWS.tracks = () => { const u = me(); return `<section class="wrap pagehead"><div class="eyebrow">${t('tr_page_eyebrow')}</div><h1 class="ph">${t('tr_page_title')}</h1><p class="lead" style="margin-bottom:0">${t('tr_page_lead')}</p></section>
+  <section class="wrap" style="padding-bottom:64px"><div class="tracks">${TRACKS.map(tr => trackHTML(tr, u)).join('')}</div></section>`; };
+
+VIEWS.course = () => {
+  const c = byId(S.p.id); if(!c) return VIEWS.catalog();
+  const u = me(), p = prog(u, c), done = u && courseDone(u, c), doc = u && u.docs.find(d => d.ref === c.id);
+  const sample = Object.assign(sampleDoc(c.kind, c.id), {name: u ? u.name : t('your_name')});
+  const cta = !p ? `<button class="btn btn-primary btn-lg" data-act="enroll" data-id="${c.id}">${t('enroll_free')}</button>`
+    : done ? `<button class="btn btn-accent btn-lg" data-go="doc" data-id="${doc.id}">${t('open_doc', c.kind)}</button><button class="btn btn-ghost" data-go="learn" data-id="${c.id}" data-i="0">${t('repeat')}</button>`
+    : `<button class="btn btn-primary btn-lg" data-go="learn" data-id="${c.id}">${pct(u, c) ? t('continue_l') : t('start')}</button>`;
+  const inTracks = TRACKS.filter(tr => tr.courses.includes(c.id));
+  return `<section class="c-hero" style="--h:${c.h}"><div class="wrap">
+      <button class="back" data-go="catalog">${t('back_catalog')}</button>
+      <div class="eyebrow" style="color:rgba(255,255,255,.75)">${I[LANG].cats[c.cat]} · ${I[LANG].lv[c.level]}</div>
+      <h1 style="margin-top:8px">${esc(cTitle(c))}</h1><p>${esc(cDesc(c))}</p>
+      <div class="c-tags"><span>${t('hrs', c.hours)}</span><span>${N(c.modules.length, 'module')}</span><span>${N(lessonsN(c), 'lesson')}</span><span>${N(tasksN(c), 'task')}</span><span>${KIND()[c.kind]}</span></div>
+    </div></section>
+    <div class="wrap c-layout">
+      <div class="c-main">
+        <div class="panel"><h2>${t('learn_title')}</h2><ul class="skills">${cSkills(c).map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
+        <div class="panel"><h2>${t('program')}</h2>
+          ${c.modules.map((m, mi) => `<div class="mod"><h3><small>${t('module_n', mi + 1)}</small>${esc(mTitle(c, mi))}</h3><ul>${m.steps.map((s, si) => { const d = p && p.done[`m${mi}s${si}`]; return `<li><span class="dot ${s.t} ${d ? 'done' : ''}"></span>${esc(s.title)}${s.qs ? ` · ${N(s.qs.length, 'question')}` : ''}</li>`; }).join('')}</ul></div>`).join('')}
+          <div class="mod"><h3><small>${t('final')}</small>${t('exam')}</h3><ul><li><span class="dot exam ${p && p.exam.passed ? 'done' : ''}"></span>${N(c.exam.length, 'question')} · ${t('pass70')}</li></ul></div>
+        </div>
+        <div class="panel"><h2>${t('doc_after')}</h2><p class="muted" style="margin-bottom:18px">${t('doc_after_p', c.kind)}</p>${docHTML(done ? doc : sample)}</div>
+      </div>
+      <aside class="side">
+        <div class="panel" style="display:flex;flex-direction:column;gap:14px">
+          ${p ? `<div><div class="eyebrow" style="margin-bottom:8px">${t('your_progress')}</div><div class="prow"><div class="bar"><i style="width:${pct(u, c)}%"></i></div><span>${pct(u, c)}%</span></div></div>` : ''}
+          ${cta}
+          <ul class="facts"><li><span>${t('f_format')}</span><b>${t('f_format_v')}</b></li><li><span>${t('f_volume')}</span><b>${t('hrs', c.hours)}</b></li><li><span>${t('f_level')}</span><b>${I[LANG].lv[c.level]}</b></li><li><span>${t('f_lang')}</span><b>${t('f_lang_v')}</b></li><li><span>${t('f_price')}</span><b>${t('f_free')}</b></li><li><span>${t('f_doc')}</span><b>${KIND()[c.kind]}</b></li></ul>
+        </div>
+        ${inTracks.length ? `<div class="panel"><div class="eyebrow" style="margin-bottom:10px">${t('in_tracks')}</div>${inTracks.map(tr => `<button class="btn btn-ghost btn-sm" style="width:100%;justify-content:space-between;margin-bottom:8px" data-go="tracks"><span>${esc(trTitle(tr))}</span><span>→</span></button>`).join('')}</div>` : ''}
+      </aside>
+    </div>`;
+};
+
+function needLogin(title){
+  return `<section class="wrap sec narrow"><div class="lock"><div class="eyebrow">${t('need_login')}</div><h2 style="font-size:28px">${title}</h2><p class="muted">${t('need_p')}</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" data-act="login">${t('login')}</button><button class="btn btn-ghost" data-act="signup">${t('signup')}</button></div></div></section>`;
+}
+
+function qBlock(q, qi, key, st){
+  const name = `q-${key}-${qi}`; const v = st.vals ? st.vals[qi] : undefined; const r = st.res ? st.res[qi] : undefined;
+  let body;
+  if(q.type === 'text') body = `<input class="inp" type="text" id="${name}" autocomplete="off" spellcheck="false" placeholder="${t('your_answer')}" value="${esc(v ?? '')}" ${st.lock ? 'disabled' : ''} style="max-width:360px">`;
+  else body = `<div class="opts">${q.o.map((o, oi) => { const ch = q.type === 'one' ? v === oi : (v || []).includes(oi);
+      return `<label class="opt"><input type="${q.type === 'one' ? 'radio' : 'checkbox'}" name="${name}" id="${name}-${oi}" value="${oi}" ${ch ? 'checked' : ''} ${st.lock ? 'disabled' : ''}><span>${o}</span></label>`; }).join('')}</div>`;
+  const fb = r === true ? `<div class="fb ok">${t('right')}</div>` : r === false ? `<div class="fb bad">${st.exam ? t('wrong') : t('wrong_retry')}</div>` : '';
+  return `<div class="q ${r === true ? 'ok' : r === false ? 'bad' : ''}"><div class="qn">${t('q_n', qi + 1)}${q.type === 'many' ? t('several') : ''}</div><div class="qt">${q.q}</div>${body}${fb}</div>`;
+}
+const rightVal = q => q.type === 'text' ? q.a[0] : q.a;
+
+VIEWS.learn = () => {
+  const u = me(), c = byId(S.p.id);
+  if(!u) return needLogin(t('need_learn'));
+  if(!c || !prog(u, c)) return VIEWS.course();
+  const p = prog(u, c), st = stepsOf(c);
+  let i = S.p.i; if(i == null || i < 0 || i >= st.length) i = firstOpen(u, c); S.p.i = i;
+  const cur = st[i];
+  if(cur.s.t === 'text' && !p.done[cur.key]) p.done[cur.key] = true;
+  p.last = cur.key; saveMe(u);
+  const percent = pct(u, c);
+  const squares = st.map((x, j) => { const d = x.key === 'exam' ? p.exam.passed : p.done[x.key];
+    return `<button class="sq ${x.s.t} ${d ? 'done' : ''} ${j === i ? 'cur' : ''}" data-act="step" data-i="${j}" title="${esc(stepTitle(x))}" aria-label="${esc(t('step_aria', j + 1, stepTitle(x)))}">${x.s.t === 'exam' ? '★' : j + 1}</button>`; }).join('');
+  const side = c.modules.map((m, mi) => `<div class="lsm"><div class="lsm-t"><span>${t('module_n', mi + 1)}</span>${esc(mTitle(c, mi))}</div><ul>${st.map((x, j) => x.mi !== mi ? '' :
+      `<li><button data-act="step" data-i="${j}" class="${j === i ? 'on' : ''}"><span class="dot ${x.s.t} ${p.done[x.key] ? 'done' : ''}"></span>${esc(x.s.title)}</button></li>`).join('')}</ul></div>`).join('')
+    + `<div class="lsm"><div class="lsm-t"><span>${t('final')}</span>${t('exam')}</div><ul><li><button data-act="step" data-i="${st.length - 1}" class="${i === st.length - 1 ? 'on' : ''}"><span class="dot exam ${p.exam.passed ? 'done' : ''}"></span>${t('exam')}</button></li></ul></div>`;
+
+  let body = '';
+  const mod = cur.mi >= 0 ? `${t('module_n', cur.mi + 1)} · ` : '';
+  const note = t('lessons_lang') ? `<div class="langnote">${t('lessons_lang')}</div>` : '';
+  if(cur.s.t === 'text'){
+    body = `<div class="stype">${mod}${t('lesson')}</div><h2>${esc(cur.s.title)}</h2>${note}<article class="prose">${cur.s.html}</article>`;
+  } else if(cur.s.t === 'quiz'){
+    const qs = cur.s.qs; const r = S.res && S.res.key === cur.key ? S.res : null;
+    const solved = p.done[cur.key];
+    let state;
+    if(r && !r.retry) state = {vals:r.vals, res:r.res, lock:r.res.every(Boolean)};
+    else if(solved && !r) state = {vals:qs.map(rightVal), res:qs.map(() => true), lock:true};
+    else state = {};
+    const allOk = state.res && state.res.every(Boolean);
+    body = `<div class="stype">${mod}${t('practice')}</div><h2>${esc(cur.s.title)}</h2>
+      <p class="muted" style="margin-bottom:18px">${t('quiz_intro')}</p>
+      ${qs.map((q, qi) => qBlock(q, qi, cur.key, state)).join('')}
+      <div class="qbar">${allOk ? `<span class="badge">${t('step_ok')}</span><button class="btn btn-ghost btn-sm" data-act="retry">${t('resolve')}</button>` : `<button class="btn btn-primary" data-act="check">${t('check')}</button>`}</div>`;
+  } else {
+    body = examBody(u, c, p, st);
+  }
+  const prev = i > 0 ? `<button class="btn btn-ghost" data-act="step" data-i="${i - 1}">${t('back')}</button>` : '<span></span>';
+  const next = i < st.length - 1 ? `<button class="btn btn-primary" data-act="step" data-i="${i + 1}">${st[i + 1].s.t === 'exam' ? t('to_exam') : t('next')}</button>` : '';
+  const wide = window.innerWidth > 860;
+  return `<div class="learn">
+    <aside class="ls"><details ${wide ? 'open' : ''}><summary><span>${t('toc')}</span><span class="muted">${percent}%</span></summary>${side}</details></aside>
+    <div class="lm">
+      <div class="lt"><button class="back" data-go="course" data-id="${c.id}">← ${esc(cTitle(c))}</button><div class="prow"><div class="bar"><i style="width:${percent}%"></i></div><span>${percent}%</span></div></div>
+      <div class="squares" role="navigation" aria-label="${t('steps_aria')}">${squares}</div>
+      <div class="lesson">${body}</div>
+      <div class="navrow">${prev}${next}</div>
+    </div></div>`;
+};
+
+function examBody(u, c, p, st){
+  const head = `<div class="stype">${t('final')}</div><h2>${t('exam')}</h2>`;
+  if(!allStepsDone(u, c)){
+    const left = st.filter(x => x.key !== 'exam' && !p.done[x.key]).length;
+    return head + `<div class="lock"><b>${t('exam_locked')}</b><p class="muted">${t('exam_left', left)}</p><button class="btn btn-primary" data-act="step" data-i="${firstOpen(u, c)}">${t('first_open')}</button></div>`;
+  }
+  const r = S.res && S.res.key === 'exam' ? S.res : null;
+  const doc = u.docs.find(d => d.ref === c.id);
+  if(r && !r.retry){
+    const ok = r.score >= 70;
+    return head + `<div class="result ${ok ? 'ok' : 'bad'}"><div class="big">${r.score}%</div><h3>${ok ? t('passed') : t('not_passed')}</h3><p>${ok ? t('doc_ready', c.kind) : t('fix_retry')}</p>
+      <div class="row">${ok && doc ? `<button class="btn btn-accent" data-go="doc" data-id="${doc.id}">${t('open_doc', c.kind)}</button>` : ''}<button class="btn btn-ghost" data-act="retry">${ok ? t('retake_better') : t('retake')}</button></div></div>
+      ${c.exam.map((q, qi) => qBlock(q, qi, 'exam', {vals:r.vals, res:r.res, lock:true, exam:true})).join('')}`;
+  }
+  if(p.exam.passed && !r){
+    return head + `<div class="result ok"><div class="big">${p.exam.best}%</div><h3>${t('passed')}</h3><p>${t('best_of', p.exam.tries)}</p><div class="row">${doc ? `<button class="btn btn-accent" data-go="doc" data-id="${doc.id}">${t('open_doc', c.kind)}</button>` : ''}<button class="btn btn-ghost" data-act="retry">${t('retake_better')}</button></div></div>`;
+  }
+  return head + `<p class="muted" style="margin-bottom:18px">${t('exam_intro', c.exam.length, c.kind)}</p>
+    ${c.exam.map((q, qi) => qBlock(q, qi, 'exam', {})).join('')}
+    <div class="qbar"><button class="btn btn-accent btn-lg" data-act="check">${t('submit_exam')}</button></div>`;
+}
+
+VIEWS.cabinet = () => {
+  const u = me(); if(!u) return needLogin(t('need_cab'));
+  const enrolled = COURSES.filter(c => u.progress[c.id]);
+  const done = enrolled.filter(c => courseDone(u, c));
+  const active = enrolled.filter(c => !courseDone(u, c));
+  const hours = done.reduce((s, c) => s + c.hours, 0);
+  const docs = u.docs.slice().reverse();
+  return `<section class="wrap" style="padding-block:40px 64px">
+    <div class="cab-h"><div><div class="eyebrow">${t('cab_eyebrow')}</div><h1 class="ph">${esc(t('hi', firstName(u.name)))}</h1></div><button class="btn btn-ghost" data-act="logout">${t('logout')}</button></div>
+    <div class="tiles"><div class="tile"><b>${active.length}</b><span>${t('t_active')}</span></div><div class="tile"><b>${done.length}</b><span>${t('t_done')}</span></div><div class="tile"><b>${u.docs.length}</b><span>${t('t_docs')}</span></div><div class="tile"><b>${hours}</b><span>${t('t_hours')}</span></div></div>
+    <div class="cab-sec"><h2>${t('my_courses')}</h2>${enrolled.length ? `<div class="rows">${enrolled.map(c => { const d = courseDone(u, c); return `<div class="crow" style="--h:${c.h}"><div class="ic">${esc(c.glyph)}</div><div style="min-width:0"><h3>${esc(cTitle(c))}</h3><small>${d ? t('got', c.kind) : t('hrs', c.hours) + ' · ' + I[LANG].lv[c.level]}</small></div><div class="prow"><div class="bar"><i style="width:${pct(u, c)}%"></i></div><span>${pct(u, c)}%</span></div>${d ? `<button class="btn btn-ghost btn-sm" data-go="course" data-id="${c.id}">${t('about')}</button>` : `<button class="btn btn-primary btn-sm" data-go="learn" data-id="${c.id}">${t('cont')}</button>`}</div>`; }).join('')}</div>`
+      : `<div class="empty">${t('no_courses')}<div style="margin-top:14px"><button class="btn btn-primary btn-sm" data-go="catalog">${t('pick_course')}</button></div></div>`}</div>
+    <div class="cab-sec"><h2>${t('my_docs')}</h2>${docs.length ? `<div class="docgrid">${docs.map(d => `<button class="dcard" data-go="doc" data-id="${d.id}">${docHTML(d)}<b>${KIND()[d.type]} · ${esc(docTitle(d))}</b><small>${esc(d.num)} · ${fmtDate(d.date)}</small></button>`).join('')}</div>`
+      : `<div class="empty">${t('no_docs')}</div>`}</div>
+    <div class="cab-sec"><h2>${t('nav_tracks')}</h2><div class="tracks">${TRACKS.map(tr => trackHTML(tr, u)).join('')}</div></div>
+    <div class="cab-sec"><h2>${t('account')}</h2><div class="panel"><form id="f-name" class="acc"><div class="field"><label for="acc-name">${t('name_docs')}</label><input class="inp" id="acc-name" value="${esc(u.name)}" required minlength="3"><span class="hint">${esc(t('name_hint', u.email))}</span></div><button class="btn btn-primary">${t('save')}</button></form></div></div>
+  </section>`;
+};
+
+function findDoc(id){
+  const u = me(); if(u){ const d = u.docs.find(x => x.id === id); if(d) return d; }
+  for(const x of Object.values(users())){ const d = (x.docs || []).find(y => y.id === id); if(d) return d; }
+  return null;
+}
+VIEWS.doc = () => {
+  const d = findDoc(S.p.id); if(!d) return `<section class="wrap sec"><div class="empty">${t('doc_nf')}</div></section>`;
+  const mine = me() && me().docs.some(x => x.id === d.id);
+  return `<section class="wrap docpage">
+    <div style="min-width:0">${docHTML(d)}</div>
+    <aside class="panel" style="display:flex;flex-direction:column;gap:14px">
+      <div><div class="eyebrow">${KIND()[d.type]}</div><h2 style="font-size:24px;margin-top:6px">${esc(docTitle(d))}</h2></div>
+      <ul class="facts"><li><span>${t('d_kind')}</span><b>${t('full_' + d.type)}</b></li><li><span>${t('d_issued')}</span><b>${esc(d.name)}</b></li><li><span>${t('d_num')}</span><b style="font-family:var(--f-mono);font-size:13px">${esc(d.num)}</b></li><li><span>${t('d_date')}</span><b>${fmtDate(d.date)}</b></li><li><span>${t('d_vol')}</span><b>${t('hrs', d.hours)}</b></li><li><span>${d.type === 'diploma' ? t('d_avg') : t('d_score')}</span><b>${d.score}%</b></li></ul>
+      <button class="btn btn-primary" data-act="copy" data-v="${esc(d.num)}">${t('copy_num')}</button>
+      <button class="btn btn-ghost" data-act="verifynum" data-v="${esc(d.num)}">${t('verify_auth')}</button>
+      ${mine ? `<button class="btn btn-ghost" data-go="cabinet">${t('to_cab')}</button>` : ''}
+      <p class="hint">${t('d_hint')}</p>
+    </aside></section>`;
+};
+
+const numKey = s => String(s || '').toUpperCase().replace(/\s/g, '').replace(/[РНСУД]/g, ch => ({'Р':'P','Н':'H','С':'C','У':'Y','Д':'D'})[ch]);
+VIEWS.verify = () => {
+  let res = '';
+  if(S.p.q){
+    const k = numKey(S.p.q); let found = null;
+    for(const x of Object.values(users())){ const d = (x.docs || []).find(y => numKey(y.num) === k); if(d){ found = d; break; } }
+    res = found ? `<div class="result ok"><h3>${t('v_ok')}</h3><ul class="facts"><li><span>${t('d_kind')}</span><b>${t('full_' + found.type)}</b></li><li><span>${t('d_issued')}</span><b>${esc(found.name)}</b></li><li><span>${t('v_prog')}</span><b>${esc(docTitle(found))}</b></li><li><span>${t('v_date')}</span><b>${fmtDate(found.date)}</b></li><li><span>${t('d_vol')}</span><b>${t('hrs', found.hours)}</b></li></ul><div class="row"><button class="btn btn-ghost btn-sm" data-go="doc" data-id="${found.id}">${t('v_view')}</button></div></div>`
+      : `<div class="result bad"><h3>${esc(t('v_nf', S.p.q))}</h3><p>${t('v_nf_p')}</p></div>`;
+  }
+  return `<section class="wrap sec narrow"><div class="eyebrow">${t('v_eyebrow')}</div><h1 class="ph">${t('v_title')}</h1>
+    <p class="lead" style="margin-bottom:0">${t('v_lead')}</p>
+    <form id="f-verify" class="vrow"><input class="inp" id="vnum" placeholder="РН-С-2026-000000" value="${esc(S.p.q || '')}" aria-label="${t('v_aria')}" required><button class="btn btn-primary">${t('v_btn')}</button></form>
+    <div class="vres">${res}</div></section>`;
+};
+
+/* ================= modal & auth ================= */
+function openModal(html){ modal.innerHTML = html; modal.hidden = false; fitDocs(); const f = modal.querySelector('input'); if(f) setTimeout(() => f.focus(), 30); }
+function closeModal(){ modal.hidden = true; modal.innerHTML = ''; }
+function openAuth(tab){
+  const login = `<form id="f-login" novalidate><div class="field"><label for="a-email">${t('email')}</label><input class="inp" id="a-email" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="a-pass">${t('pass')}</label><input class="inp" id="a-pass" type="password" autocomplete="current-password" required></div>
+    <div class="err" id="a-err" role="alert"></div><button class="btn btn-primary w100">${t('do_login')}</button></form>`;
+  const signup = `<form id="f-signup" novalidate><div class="field"><label for="s-name">${t('fio')}</label><input class="inp" id="s-name" autocomplete="name" required><span class="hint">${t('fio_hint')}</span></div>
+    <div class="field"><label for="s-email">${t('email')}</label><input class="inp" id="s-email" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="s-pass">${t('pass')}</label><input class="inp" id="s-pass" type="password" autocomplete="new-password" required><span class="hint">${t('pass_hint')}</span></div>
+    <div class="field"><label for="s-pass2">${t('pass2')}</label><input class="inp" id="s-pass2" type="password" autocomplete="new-password" required></div>
+    <div class="err" id="s-err" role="alert"></div><button class="btn btn-primary w100">${t('do_signup')}</button></form>`;
+  openModal(`<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="auth-h"><button class="x" data-act="close" aria-label="${t('close')}">×</button>
+    <div class="dlg-logo">${MARK}</div><h2 id="auth-h">${tab === 'login' ? t('a_login_h') : t('a_signup_h')}</h2>
+    <div class="tabs" role="tablist"><button role="tab" aria-selected="${tab === 'login'}" data-act="tab" data-v="login">${t('tab_login')}</button><button role="tab" aria-selected="${tab === 'signup'}" data-act="tab" data-v="signup">${t('tab_signup')}</button></div>
+    ${tab === 'login' ? login : signup}
+    <div class="or">${t('or')}</div><button class="btn btn-ghost w100" data-act="demo">${t('demo')}</button>
+    <p class="hint c">${t('demo_hint')}</p></div>`);
+}
+function afterAuth(){
+  closeModal();
+  const a = S.after; S.after = null;
+  if(a && a.act === 'enroll') return enroll(a.id);
+  render();
+}
+async function doLogin(f){
+  const email = norm(f.querySelector('#a-email').value), pw = f.querySelector('#a-pass').value, err = f.querySelector('#a-err');
+  const u = users()[email];
+  if(!email || !pw){ err.textContent = t('e_empty'); return; }
+  if(!u && email === 'demo@rohnamo.tj' && pw === 'rohnamo2026') return demoLogin();
+  if(!u ||u.hash !== await hashPw(pw, u.salt)){ err.textContent = t('e_bad'); return; }
+  LS.set('rh.session', email); toast(t('hello_toast', firstName(u.name))); afterAuth();
+}
+async function doSignup(f){
+  const name = f.querySelector('#s-name').value.trim().replace(/\s+/g, ' '), email = norm(f.querySelector('#s-email').value);
+  const pw = f.querySelector('#s-pass').value, pw2 = f.querySelector('#s-pass2').value, err = f.querySelector('#s-err');
+  if(name.length < 3 || !/\s/.test(name)){ err.textContent = t('e_name'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ err.textContent = t('e_email'); return; }
+  if(pw.length < 6){ err.textContent = t('e_pass'); return; }
+  if(pw !== pw2){ err.textContent = t('e_match'); return; }
+  if(users()[email]){ err.textContent = t('e_exists'); return; }
+  const salt = Math.random().toString(36).slice(2) + Date.now().toString(36);
+  const u = {name, email, salt, hash:await hashPw(pw, salt), created:new Date().toISOString(), progress:{}, docs:[]};
+  saveMe(u); LS.set('rh.session', email); toast(t('created_toast')); afterAuth();
+}
+async function demoLogin(){
+  const email = 'demo@rohnamo.tj';
+  let u = users()[email];
+  if(!u){
+    const salt = 'demo';
+    u = {name:'Фирдавс Раҳимов', email, salt, hash:await hashPw('rohnamo2026', salt), created:new Date().toISOString(), progress:{}, docs:[]};
+    const tj = byId('tajik'); u.progress.tajik = newProg();
+    stepsOf(tj).forEach(x => { if(x.key !== 'exam') u.progress.tajik.done[x.key] = true; });
+    u.progress.tajik.exam = {best:90, passed:true, tries:1};
+    const py = byId('python'); u.progress.python = newProg();
+    stepsOf(py).slice(0, 3).forEach(x => u.progress.python.done[x.key] = true);
+    u.progress.montage = newProg();
+    issueDocs(u); saveMe(u);
+  }
+  LS.set('rh.session', email); toast(t('demo_toast')); afterAuth();
+}
+function enroll(id){
+  const u = me(); const c = byId(id);
+  if(!u){ S.after = {act:'enroll', id}; openAuth('signup'); return; }
+  if(!u.progress[id]){ u.progress[id] = newProg(); saveMe(u); toast(t('enrolled_toast', cTitle(c))); }
+  go('learn', {id});
+}
+function celebrate(list){
+  openModal(`<div class="dialog wide" role="dialog" aria-modal="true" aria-labelledby="cel-h"><button class="x" data-act="close" aria-label="${t('close')}">×</button>
+    <div class="eyebrow">${t('cel_eyebrow')}</div><h2 id="cel-h">${list.length > 1 ? t('cel_many') : t('cel_one', list[0].type)}</h2>
+    <div class="celebrate">${list.map(d => `<button class="dcard" data-go="doc" data-id="${d.id}">${docHTML(d)}<b>${KIND()[d.type]} · ${esc(docTitle(d))}</b><small>${esc(d.num)}</small></button>`).join('')}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-accent" data-go="doc" data-id="${list[list.length - 1].id}">${t('open_doc2')}</button><button class="btn btn-ghost" data-go="cabinet">${t('to_cab2')}</button></div></div>`);
+}
+function toast(m){ const el = document.getElementById('toast'); el.textContent = m; el.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(() => el.hidden = true, 2800); }
+
+/* ================= quiz logic ================= */
+function readAns(q, name){
+  if(q.type === 'text'){ const el = document.getElementById(name); return el ? el.value : ''; }
+  if(q.type === 'one'){ const el = document.querySelector(`input[name="${name}"]:checked`); return el ? +el.value : null; }
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(e => +e.value);
+}
+function isRight(q, v){
+  if(q.type === 'text'){ const n = norm(v); return q.a.some(a => norm(a) === n); }
+  if(q.type === 'one') return v === q.a;
+  return v.length === q.a.length && q.a.every(x => v.includes(x));
+}
+function check(){
+  const u = me(), c = byId(S.p.id), st = stepsOf(c), cur = st[S.p.i], p = prog(u, c);
+  const qs = cur.s.t === 'exam' ? c.exam : cur.s.qs;
+  const vals = qs.map((q, qi) => readAns(q, `q-${cur.key}-${qi}`));
+  const missing = vals.some((v, qi) => qs[qi].type === 'text' ? !String(v).trim() : qs[qi].type === 'one' ? v == null : !v.length);
+  if(missing){ toast(t('answer_all')); return; }
+  const res = qs.map((q, qi) => isRight(q, vals[qi]));
+  if(cur.s.t === 'quiz'){
+    if(res.every(Boolean)) p.done[cur.key] = true;
+    saveMe(u); S.res = {key:cur.key, vals, res}; render();
+    toast(res.every(Boolean) ? t('step_done_toast') : t('right_x', res.filter(Boolean).length, res.length));
+  } else {
+    const score = Math.round(res.filter(Boolean).length / qs.length * 100);
+    p.exam.tries++; p.exam.best = Math.max(p.exam.best, score); if(score >= 70) p.exam.passed = true;
+    const fresh = issueDocs(u); saveMe(u);
+    S.res = {key:'exam', vals, res, score}; render(); window.scrollTo(0, 0);
+    if(fresh.length) setTimeout(() => celebrate(fresh), 350);
+  }
+}
+
+/* ================= events ================= */
+const ACT = {
+  login: () => openAuth('login'),
+  signup: () => openAuth('signup'),
+  tab: a => openAuth(a.dataset.v),
+  close: () => closeModal(),
+  demo: () => demoLogin(),
+  enroll: a => enroll(a.dataset.id),
+  lang: a => { LANG = a.dataset.v; LS.set('rh.lang', LANG); render(); },
+  logout: () => { LS.del('rh.session'); toast(t('logout_toast')); go('home'); },
+  cat: a => { S.cat = a.dataset.v; if(S.view !== 'catalog') go('catalog'); else render(); },
+  lvl: a => { S.lvl = a.dataset.v; render(); },
+  kind: a => { S.kind = a.dataset.v; render(); },
+  reset: () => { S.cat = 'all'; S.lvl = ''; S.kind = ''; S.q = ''; render(); },
+  step: a => { S.res = null; S.p.i = +a.dataset.i; render(); window.scrollTo(0, 0); },
+  check: () => check(),
+  retry: () => { const c = byId(S.p.id); S.res = {key:stepsOf(c)[S.p.i].key, retry:true}; render(); },
+  copy: a => { const v = a.dataset.v; try{ navigator.clipboard.writeText(v).then(() => toast(t('copied')), () => toast(t('num_is', v))); }catch(e){ toast(t('num_is', v)); } },
+  verifynum: a => go('verify', {q:a.dataset.v})
+};
+document.addEventListener('click', e => {
+  if(e.target === modal){ closeModal(); return; }
+  const g = e.target.closest('[data-go]');
+  if(g){ const p = {}; if(g.dataset.id) p.id = g.dataset.id; if(g.dataset.i != null) p.i = +g.dataset.i; go(g.dataset.go, p); return; }
+  const a = e.target.closest('[data-act]');
+  if(a && ACT[a.dataset.act]){ e.preventDefault(); ACT[a.dataset.act](a); }
+});
+document.addEventListener('submit', e => {
+  e.preventDefault(); const f = e.target;
+  if(f.id === 'f-login') doLogin(f);
+  else if(f.id === 'f-signup') doSignup(f);
+  else if(f.id === 'f-verify'){ const v = f.querySelector('#vnum').value.trim(); if(v) go('verify', {q:v}); }
+  else if(f.id === 'f-name'){ const u = me(); const n = f.querySelector('#acc-name').value.trim().replace(/\s+/g, ' '); if(n.length < 3){ toast(t('name_short')); return; } u.name = n; saveMe(u); toast(t('name_saved')); render(); }
+});
+document.addEventListener('input', e => {
+  if(e.target.id === 'q'){ S.q = e.target.value; const g = document.getElementById('grid'); if(g){ g.innerHTML = gridHTML(); } }
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && !modal.hidden) closeModal();
+  if(e.key === 'Enter' && e.target.matches('.q input[type=text]')){ e.preventDefault(); check(); }
+});
+let rzT; addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(fitDocs, 150); });
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitDocs);
+
+render();
+</script>
+
+</body>
+</html>
